@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liminal Vocab — A Verbal Cartography of Liminal Times</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d6;
+    --ink: #1a1a1a;
+    --ink-soft: #5a5754;
+    --ink-faded: #8a8680;
+    --accent: #b8391a;
+    --rule: #d9d2c2;
+    --green: #2d6a4f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 380;
+    font-size: 19px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .wide {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---- Hero ---- */
+  header.hero {
+    padding: 140px 0 120px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 48px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--ink-faded);
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-weight: 340;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 580px;
+    font-weight: 360;
+  }
+
+  /* ---- Sections ---- */
+  section {
+    padding: 110px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+    font-weight: 360;
+    font-size: clamp(32px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  p {
+    margin-bottom: 22px;
+    max-width: 620px;
+  }
+
+  p + p { margin-top: -4px; }
+
+  .pull {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 60;
+    font-style: italic;
+    font-weight: 340;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--ink);
+    padding: 32px 0 32px 28px;
+    border-left: 2px solid var(--accent);
+    margin: 48px 0;
+    max-width: 600px;
+  }
+
+  .pull cite {
+    display: block;
+    margin-top: 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  /* ---- Explorer ---- */
+  .explorer-intro {
+    margin-bottom: 56px;
+  }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .filter-btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .filter-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .card {
+    background: var(--paper);
+    padding: 28px 26px 30px;
+    transition: background 0.3s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  }
+
+  .card:hover {
+    background: var(--paper-deep);
+  }
+
+  .card-type {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 14px;
+  }
+
+  .card-type span {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .card-term {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 40;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .card-makes-visible {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: auto;
+    padding-bottom: 18px;
+  }
+
+  .card-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faded);
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .card.hidden {
+    display: none;
+  }
+
+  .explorer-note {
+    margin-top: 36px;
+    font-size: 14px;
+    color: var(--ink-faded);
+    font-style: italic;
+    max-width: 580px;
+  }
+
+  /* ---- Method ---- */
+  .method-steps {
+    margin-top: 48px;
+    display: grid;
+    gap: 48px;
+    max-width: 640px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+
+  .step-body h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 48;
+    font-weight: 420;
+    font-size: 22px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-body p {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ---- Principles ---- */
+  .principles {
+    margin-top: 48px;
+    display: grid;
+    gap: 0;
+    max-width: 640px;
+  }
+
+  .principle {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+
+  .principle:last-child { border-bottom: none; }
+
+  .principle-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faded);
+  }
+
+  .principle-text {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 48, "SOFT" 40;
+    font-weight: 380;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .principle-text strong {
+    font-weight: 520;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ---- Submit Form ---- */
+  .submit-intro {
+    margin-bottom: 48px;
+  }
+
+  .submit-form {
+    max-width: 640px;
+  }
+
+  .form-group {
+    margin-bottom: 32px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .form-group label .required {
+    color: var(--accent);
+  }
+
+  .form-group .hint {
+    display: block;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-faded);
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    transition: border-color 0.25s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  .submit-btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+  }
+
+  .submit-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .form-result {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 2px;
+    font-size: 16px;
+    display: none;
+  }
+
+  .form-result.success {
+    display: block;
+    background: #e8f5e9;
+    border: 1px solid var(--green);
+    color: var(--green);
+  }
+
+  .form-result.error {
+    display: block;
+    background: #fbe9e7;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .form-result a {
+    color: inherit;
+    font-weight: 500;
+  }
+
+  .or-github {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--rule);
+    font-size: 15px;
+    color: var(--ink-faded);
+  }
+
+  .or-github a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+
+  .or-github a:hover {
+    color: var(--accent);
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    padding: 100px 0 80px;
+  }
+
+  footer p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 16px;
+  }
+
+  footer a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+
+  footer a:hover {
+    color: var(--accent);
+  }
+
+  .footer-meta {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faded);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ---- Reveal animation ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .wrap, .wide { padding: 0 24px; }
+    header.hero { padding: 90px 0 80px; }
+    section { padding: 80px 0; }
+    .grid { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 1fr; gap: 8px; }
+    body { font-size: 17px; }
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--paper);
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Liminal Vocab · April 2026</div>
+    <h1 class="reveal">Everything's changing<br>and we don't have<br>the <em>words</em>.</h1>
+    <p class="lede reveal">An open, curated, multilingual cartography of the new vocabulary emerging at the edges of culture — where communities of practice are already naming things the rest of us can't yet see.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-label reveal">The situation</div>
+    <h2 class="reveal">We are living through a liminal time, and our language is behind.</h2>
+    <p class="reveal">The old vocabulary — <em>democracy, freedom, community, work</em> — has been hollowed out through overuse and political corruption. The new vocabulary that could describe what's actually happening doesn't exist yet. We reach for words that aren't there.</p>
+    <p class="reveal">This is not a metaphor. Cognitive scientists like Lera Boroditsky have shown that when we lack language for a phenomenon, we don't just struggle to communicate it — we struggle to <em>think</em> about it at the most basic level. To remember it. To assign responsibility for it.</p>
+    <div class="pull reveal">
+      New realities are emerging, but they're still insubstantial. The old words are corrupted, and the new words don't exist yet. We're caught in between.
+      <cite>— Kinsey Carlson, <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont" style="color:inherit">"Everything's changing and we don't have the words"</a></cite>
+    </div>
+    <p class="reveal">But Carlson's essay also points to where the new language is already being made: at the edges, in <em>communities of practice</em> — groups of people living inside arrangements so new that they have no choice but to invent the words for them.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wide">
+    <div class="section-label reveal">The proposal</div>
+    <h2 class="reveal">Map the edges. Document what's being named. Make it <em>legible</em> to everyone else.</h2>
+    <div class="explorer-intro reveal">
+      <p>A public repository of emerging terms, each one documented not as a dictionary entry but as a small act of observation: which community coined it, what it makes visible, which older concept it quietly breaks open. Filter by community type to see the pattern.</p>
+    </div>
+
+    <div class="filter-row reveal">
+      <button class="filter-btn active" data-filter="all">All entries</button>
+      <button class="filter-btn" data-filter="A">A · Technological</button>
+      <button class="filter-btn" data-filter="B">B · Social / lived</button>
+      <button class="filter-btn" data-filter="C">C · Therapeutic</button>
+      <button class="filter-btn" data-filter="D">D · Economic</button>
+    </div>
+
+    <div class="grid reveal" id="grid">
+
+      <div class="card" data-type="A">
+        <div class="card-type">Type <span>A</span> · AI discourse</div>
+        <div class="card-term">ai;dr</div>
+        <div class="card-makes-visible">AI-generated text that can be safely ignored — a reading stance for a new textual ecology.</div>
+        <div class="card-meta">DISPLACES → "tl;dr" as generic dismissal</div>
+      </div>
+
+      <div class="card" data-type="A">
+        <div class="card-type">Type <span>A</span> · software dev</div>
+        <div class="card-term">vibe-coding</div>
+        <div class="card-makes-visible">Writing software by describing intent to a model rather than by composing syntax.</div>
+        <div class="card-meta">DISPLACES → "prototyping", "scripting"</div>
+      </div>
+
+      <div class="card" data-type="A">
+        <div class="card-type">Type <span>A</span> · online writing</div>
+        <div class="card-term">slop</div>
+        <div class="card-makes-visible">Low-effort machine-generated content that pollutes shared information spaces.</div>
+        <div class="card-meta">DISPLACES → "spam", "filler"</div>
+      </div>
+
+      <div class="card" data-type="B">
+        <div class="card-type">Type <span>B</span> · queer communities</div>
+        <div class="card-term">chosen family</div>
+        <div class="card-makes-visible">Kinship built from care and commitment rather than biology or law.</div>
+        <div class="card-meta">BREAKS → family as biological unit</div>
+      </div>
+
+      <div class="card" data-type="B">
+        <div class="card-type">Type <span>B</span> · new work</div>
+        <div class="card-term">quiet quitting</div>
+        <div class="card-makes-visible">Doing one's job without the performative enthusiasm once treated as mandatory.</div>
+        <div class="card-meta">BREAKS → labor as identity</div>
+      </div>
+
+      <div class="card" data-type="B">
+        <div class="card-type">Type <span>B</span> · neurodivergent</div>
+        <div class="card-term">masking</div>
+        <div class="card-makes-visible">The unseen cognitive labor of performing neurotypicality in public.</div>
+        <div class="card-meta">MAKES VISIBLE → hidden adaptation cost</div>
+      </div>
+
+      <div class="card" data-type="C">
+        <div class="card-type">Type <span>C</span> · therapeutic</div>
+        <div class="card-term">parentification</div>
+        <div class="card-makes-visible">When a child is made to carry emotional responsibility for a parent.</div>
+        <div class="card-meta">NAMES → a silent family pattern</div>
+      </div>
+
+      <div class="card" data-type="C">
+        <div class="card-type">Type <span>C</span> · therapeutic</div>
+        <div class="card-term">rejection sensitivity</div>
+        <div class="card-makes-visible">A physiological intensity of response to perceived rejection, not a character flaw.</div>
+        <div class="card-meta">BREAKS → "overreaction" framing</div>
+      </div>
+
+      <div class="card" data-type="C">
+        <div class="card-type">Type <span>C</span> · feminist theory</div>
+        <div class="card-term">emotional labor</div>
+        <div class="card-makes-visible">The unpaid work of managing others' feelings — and how unevenly it's distributed.</div>
+        <div class="card-meta">MAKES VISIBLE → invisible gendered work</div>
+      </div>
+
+      <div class="card" data-type="D">
+        <div class="card-type">Type <span>D</span> · post-growth</div>
+        <div class="card-term">commoning</div>
+        <div class="card-makes-visible">Resources stewarded collectively as an active practice, not a legal status.</div>
+        <div class="card-meta">BREAKS → public/private binary</div>
+      </div>
+
+      <div class="card" data-type="D">
+        <div class="card-type">Type <span>D</span> · degrowth</div>
+        <div class="card-term">sufficiency</div>
+        <div class="card-makes-visible">"Enough" as a positive goal rather than a concession to scarcity.</div>
+        <div class="card-meta">DISPLACES → "sacrifice", "austerity"</div>
+      </div>
+
+      <div class="card" data-type="D">
+        <div class="card-type">Type <span>D</span> · solidarity econ</div>
+        <div class="card-term">mutual aid</div>
+        <div class="card-makes-visible">Horizontal support networks that reject the charity / recipient hierarchy.</div>
+        <div class="card-meta">BREAKS → donor / beneficiary framing</div>
+      </div>
+
+    </div>
+
+    <p class="explorer-note reveal">These are illustrative examples, not the final corpus. The real work begins when a community submits the term they can't find anywhere else.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label reveal">The method</div>
+    <h2 class="reveal">The form is part of the argument.</h2>
+    <p class="reveal">The repository borrows its workflow from software development — pull requests, version history, public review — and applies it to humanistic work. That's deliberate. A community of practice (coders) developed a vocabulary for collaborative knowledge work that the humanities never adopted. Using it here is itself an act of translation across edges.</p>
+
+    <div class="method-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Human submission only</h3>
+          <p>Terms are proposed by people who encountered them in lived practice, with a concrete usage citation. No machine-generated entries — not for quality reasons, but because the project studies words born of experience.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Public review</h3>
+          <p>Every proposal is a pull request. Discussion, editorial decisions, and even rejections remain visible. The threshold between "not yet ready" and "accepted" is itself part of the cartography.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Human-authored analysis</h3>
+          <p>AI can assist with research, translation, and pattern-finding. But the interpretive essay accompanying each entry is always written and signed by a human editor. The machine distills; the human judges.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Open, multilingual, navigable</h3>
+          <p>Structured metadata makes the archive filterable by community, era, or pattern — so readers can see, for instance, all the terms that break a false binary into a spectrum. Untranslatability is treated as material, not as a gap to paper over.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label reveal">Principles</div>
+    <h2 class="reveal">Six lines to return to when in doubt.</h2>
+    <div class="principles">
+      <div class="principle reveal"><div class="principle-num">01</div><div class="principle-text">The <strong>form</strong> is part of the thesis.</div></div>
+      <div class="principle reveal"><div class="principle-num">02</div><div class="principle-text"><strong>Evidence</strong> beats assertion. No entry without a real use.</div></div>
+      <div class="principle reveal"><div class="principle-num">03</div><div class="principle-text">AI <strong>distills</strong>, humans interpret.</div></div>
+      <div class="principle reveal"><div class="principle-num">04</div><div class="principle-text">The <strong>in-between</strong> is material, not waste.</div></div>
+      <div class="principle reveal"><div class="principle-num">05</div><div class="principle-text"><strong>Transparency</strong> before consensus.</div></div>
+      <div class="principle reveal"><div class="principle-num">06</div><div class="principle-text"><strong>Observe</strong>, don't steer.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="submit">
+  <div class="wrap">
+    <div class="section-label reveal">Contribute</div>
+    <h2 class="reveal">You know a word that doesn't exist in mainstream language yet? <em>Submit it.</em></h2>
+    <div class="submit-intro reveal">
+      <p>This cartography grows through observation, not invention. If you've encountered a term in a community of practice that names something previously invisible — something the rest of us don't have words for yet — propose it here.</p>
+      <p>Every submission requires a <strong>concrete citation from actual usage</strong>. Not paraphrased, not invented. If you can't point to someone using the term in practice, it's not yet what we study.</p>
+    </div>
+
+    <form class="submit-form reveal" id="proposalForm">
+      <div class="form-group">
+        <label>Term <span class="required">*</span></label>
+        <input type="text" name="term" required placeholder="e.g., vibe-coding, commoning, rejection sensitivity">
+      </div>
+
+      <div class="form-group">
+        <label>Community Type <span class="required">*</span></label>
+        <select name="community_type" required>
+          <option value="" disabled selected>Select a frontier type</option>
+          <option value="A">A — Technological (AI, crypto, open source, biohacking)</option>
+          <option value="B">B — Social / Lived (queer, neurodivergent, new work/housing)</option>
+          <option value="C">C — Therapeutic-Reflective (trauma, attachment, mindfulness)</option>
+          <option value="D">D — Economic-Organizational (commons, cooperatives, degrowth)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Specific Community <span class="required">*</span></label>
+        <span class="hint">Which specific community or context does this term come from?</span>
+        <input type="text" name="community_specific" required placeholder="e.g., ADHD community, degrowth movement, open-source developers">
+      </div>
+
+      <div class="form-group">
+        <label>What does this term make visible? <span class="required">*</span></label>
+        <span class="hint">What phenomenon does this term name that was previously unnamed?</span>
+        <textarea name="makes_visible" required placeholder="Describe what couldn't be said — or thought clearly — before this term existed."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Citation from actual usage <span class="required">*</span></label>
+        <span class="hint">A concrete quote showing this term being used in practice, with source.</span>
+        <textarea name="citation" required placeholder='"Quote from actual usage" — Source (URL, publication, conversation context)'></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Additional context</label>
+        <span class="hint">Optional: when did the term emerge? What older term does it displace?</span>
+        <textarea name="context" placeholder="e.g., Emerged around 2024. Displaces 'laziness' framing. Related to..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Your name</label>
+        <span class="hint">Optional. Will be credited on the proposal.</span>
+        <input type="text" name="submitter_name" placeholder="Your name (optional)">
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Term Proposal</button>
+
+      <div class="form-result" id="formResult"></div>
+
+      <div class="or-github reveal">
+        Or, if you prefer: <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=term-proposal.yml">submit directly as a GitHub Issue</a>.
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer id="credit">
+  <div class="wrap">
+    <p>This project is a direct response to Kinsey Carlson's essay <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont">"Everything's changing and we don't have the words"</a>, published on <em>In the Making</em> in April 2026. It tries to turn her closing question — <em>which communities of practice are you paying attention to?</em> — into an actual method.</p>
+    <p>It is early. It is open to collaborators, critics, and especially to people already living inside arrangements that don't have names yet.</p>
+    <p>Source and discussion on <a href="https://github.com/tricksal/liminal-vocab">GitHub</a>.</p>
+    <div class="footer-meta">
+      <span>STATUS · V 0.1 · OPEN FOR PROPOSALS</span>
+      <span>APRIL 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Filter
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => io.observe(r));
+
+  // Hero reveals immediately
+  window.addEventListener('load', () => {
+    document.querySelectorAll('header.hero .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), 120 + i * 180);
+    });
+  });
+
+  // Form submission
+  const form = document.getElementById('proposalForm');
+  const result = document.getElementById('formResult');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    result.className = 'form-result';
+    result.style.display = 'none';
+
+    const data = {
+      term: form.term.value.trim(),
+      community_type: form.community_type.value,
+      community_specific: form.community_specific.value.trim(),
+      makes_visible: form.makes_visible.value.trim(),
+      citation: form.citation.value.trim(),
+      context: form.context.value.trim(),
+      submitter_name: form.submitter_name.value.trim(),
+    };
+
+    try {
+      const resp = await fetch('/liminal-vocab/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.detail || 'Submission failed');
+      }
+
+      const res = await resp.json();
+      result.className = 'form-result success';
+      result.innerHTML = `Thank you. Your proposal for <strong>${data.term}</strong> has been submitted as <a href="${res.issue_url}" target="_blank">Issue #${res.issue_number}</a> on GitHub. The editorial team will review it publicly.`;
+      result.style.display = 'block';
+      form.reset();
+    } catch (err) {
+      result.className = 'form-result error';
+      result.textContent = 'Something went wrong: ' + err.message + '. You can also submit directly via GitHub.';
+      result.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Term Proposal';
+    }
+  });
+</script>
+
+</body>
+</html>

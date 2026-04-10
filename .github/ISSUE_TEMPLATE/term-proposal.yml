@@ -1,0 +1,72 @@
+name: "Term Proposal"
+description: "Propose a new term for the cartography"
+title: "[Term] "
+labels: ["term-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Propose a Term
+
+        Thank you for contributing to the cartography. Please fill in all required fields below.
+
+        **Important:** We study terms that emerge from lived practice in communities. AI-generated submissions are not accepted — not for quality reasons, but because the project studies words born of experience.
+
+  - type: input
+    id: term
+    attributes:
+      label: Term
+      description: "The term you're proposing"
+      placeholder: "e.g., vibe-coding"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: community_type
+    attributes:
+      label: Community Type
+      description: "Which frontier does this term come from?"
+      options:
+        - "A — Technological (AI, crypto, open source, biohacking)"
+        - "B — Social / Lived (queer, neurodivergent, new work/housing)"
+        - "C — Therapeutic-Reflective (trauma, attachment, mindfulness)"
+        - "D — Economic-Organizational (commons, cooperatives, degrowth)"
+    validations:
+      required: true
+
+  - type: input
+    id: community_specific
+    attributes:
+      label: Specific Community
+      description: "Which specific community or context does this term come from?"
+      placeholder: "e.g., software development, ADHD community, degrowth movement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: makes_visible
+    attributes:
+      label: What does this term make visible?
+      description: "What phenomenon does this term name that was previously unnamed or invisible?"
+      placeholder: "Describe what couldn't be said before this term existed"
+    validations:
+      required: true
+
+  - type: textarea
+    id: citation
+    attributes:
+      label: Citation from actual usage
+      description: "A concrete quote showing this term being used in practice, with source. Not paraphrased, not invented."
+      placeholder: |
+        "Quote from actual usage" — Source (URL, publication, conversation context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context (optional)
+      description: "Any additional context — when did this term emerge? What older term does it displace or complicate?"
+      placeholder: "e.g., Displaces 'tl;dr' as generic dismissal. Emerged around 2024-2025."
+    validations:
+      required: false
