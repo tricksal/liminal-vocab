@@ -28,19 +28,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-COMMUNITY_TYPE_MAP = {
-    "A": "A — Technological",
-    "B": "B — Social / Lived",
-    "C": "C — Therapeutic-Reflective",
-    "D": "D — Economic-Organizational",
-}
-
-
 class TermProposal(BaseModel):
     term: str = Field(..., min_length=1, max_length=200)
-    community_type: str = Field(..., pattern=r"^[A-D]$")
-    community_specific: str = Field(..., min_length=1, max_length=300)
+    community: str = Field(..., min_length=1, max_length=300)
     makes_visible: str = Field(..., min_length=10, max_length=2000)
+    pattern: str = Field("", max_length=500)
     citation: str = Field(..., min_length=10, max_length=3000)
     context: str = Field("", max_length=2000)
     submitter_name: str = Field("", max_length=200)
@@ -56,21 +48,24 @@ async def submit_term(proposal: TermProposal):
     if not GITHUB_TOKEN:
         raise HTTPException(status_code=500, detail="GitHub token not configured")
 
-    community_label = COMMUNITY_TYPE_MAP.get(proposal.community_type, proposal.community_type)
-
     body = f"""## Term Proposal: {proposal.term}
 
 **Submitted via web form**{f" by {proposal.submitter_name}" if proposal.submitter_name else ""}
 
-### Community Type
-{community_label}
-
-### Specific Community
-{proposal.community_specific}
+### Where does it come from?
+{proposal.community}
 
 ### What does this term make visible?
 {proposal.makes_visible}
+"""
 
+    if proposal.pattern:
+        body += f"""
+### What kind of shift does it perform?
+{proposal.pattern}
+"""
+
+    body += f"""
 ### Citation from actual usage
 {proposal.citation}
 """

@@ -164,40 +164,6 @@
     margin-bottom: 56px;
   }
 
-  .filter-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 48px;
-    padding-bottom: 24px;
-    border-bottom: 1px dashed var(--rule);
-  }
-
-  .filter-btn {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    background: transparent;
-    border: 1px solid var(--rule);
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    border-radius: 2px;
-  }
-
-  .filter-btn:hover {
-    border-color: var(--ink);
-    color: var(--ink);
-  }
-
-  .filter-btn.active {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--paper);
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -260,10 +226,6 @@
     color: var(--ink-faded);
     padding-top: 14px;
     border-top: 1px dashed var(--rule);
-  }
-
-  .card.hidden {
-    display: none;
   }
 
   .explorer-note {
@@ -591,98 +553,90 @@
     <div class="section-label reveal">The proposal</div>
     <h2 class="reveal">Map the edges. Document what's being named. Make it <em>legible</em> to everyone else.</h2>
     <div class="explorer-intro reveal">
-      <p>A public repository of emerging terms, each one documented not as a dictionary entry but as a small act of observation: which community coined it, what it makes visible, which older concept it quietly breaks open. Filter by community type to see the pattern.</p>
-    </div>
-
-    <div class="filter-row reveal">
-      <button class="filter-btn active" data-filter="all">All entries</button>
-      <button class="filter-btn" data-filter="A">A · Technological</button>
-      <button class="filter-btn" data-filter="B">B · Social / lived</button>
-      <button class="filter-btn" data-filter="C">C · Therapeutic</button>
-      <button class="filter-btn" data-filter="D">D · Economic</button>
+      <p>A public repository of emerging terms, each one documented not as a dictionary entry but as a small act of observation: where it comes from, what it makes visible, and what kind of shift it performs. No fixed categories — the patterns emerge from the terms themselves.</p>
     </div>
 
     <div class="grid reveal" id="grid">
 
-      <div class="card" data-type="A">
-        <div class="card-type">Type <span>A</span> · AI discourse</div>
+      <div class="card">
+        <div class="card-type"><span>AI discourse</span></div>
         <div class="card-term">ai;dr</div>
         <div class="card-makes-visible">AI-generated text that can be safely ignored — a reading stance for a new textual ecology.</div>
         <div class="card-meta">DISPLACES → "tl;dr" as generic dismissal</div>
       </div>
 
-      <div class="card" data-type="A">
-        <div class="card-type">Type <span>A</span> · software dev</div>
+      <div class="card">
+        <div class="card-type"><span>software dev</span></div>
         <div class="card-term">vibe-coding</div>
         <div class="card-makes-visible">Writing software by describing intent to a model rather than by composing syntax.</div>
         <div class="card-meta">DISPLACES → "prototyping", "scripting"</div>
       </div>
 
-      <div class="card" data-type="A">
-        <div class="card-type">Type <span>A</span> · online writing</div>
+      <div class="card">
+        <div class="card-type"><span>online culture</span></div>
         <div class="card-term">slop</div>
         <div class="card-makes-visible">Low-effort machine-generated content that pollutes shared information spaces.</div>
-        <div class="card-meta">DISPLACES → "spam", "filler"</div>
+        <div class="card-meta">MAKES VISIBLE → a new category of pollution</div>
       </div>
 
-      <div class="card" data-type="B">
-        <div class="card-type">Type <span>B</span> · queer communities</div>
+      <div class="card">
+        <div class="card-type"><span>queer communities</span></div>
         <div class="card-term">chosen family</div>
         <div class="card-makes-visible">Kinship built from care and commitment rather than biology or law.</div>
         <div class="card-meta">BREAKS → family as biological unit</div>
       </div>
 
-      <div class="card" data-type="B">
-        <div class="card-type">Type <span>B</span> · new work</div>
+      <div class="card">
+        <div class="card-type"><span>labor / new work</span></div>
         <div class="card-term">quiet quitting</div>
         <div class="card-makes-visible">Doing one's job without the performative enthusiasm once treated as mandatory.</div>
-        <div class="card-meta">BREAKS → labor as identity</div>
+        <div class="card-meta">MAKES VISIBLE → unpaid emotional performance</div>
       </div>
 
-      <div class="card" data-type="B">
-        <div class="card-type">Type <span>B</span> · neurodivergent</div>
+      <div class="card">
+        <div class="card-type"><span>neurodivergent communities</span></div>
         <div class="card-term">masking</div>
         <div class="card-makes-visible">The unseen cognitive labor of performing neurotypicality in public.</div>
         <div class="card-meta">MAKES VISIBLE → hidden adaptation cost</div>
       </div>
 
-      <div class="card" data-type="C">
-        <div class="card-type">Type <span>C</span> · therapeutic</div>
+      <div class="card">
+        <div class="card-type"><span>family therapy</span></div>
         <div class="card-term">parentification</div>
         <div class="card-makes-visible">When a child is made to carry emotional responsibility for a parent.</div>
         <div class="card-meta">NAMES → a silent family pattern</div>
       </div>
 
-      <div class="card" data-type="C">
-        <div class="card-type">Type <span>C</span> · therapeutic</div>
+      <div class="card">
+        <div class="card-type"><span>ADHD / neurodivergent</span></div>
         <div class="card-term">rejection sensitivity</div>
         <div class="card-makes-visible">A physiological intensity of response to perceived rejection, not a character flaw.</div>
-        <div class="card-meta">BREAKS → "overreaction" framing</div>
+        <div class="card-meta">REFRAMES → "overreaction" as neurology</div>
       </div>
 
-      <div class="card" data-type="C">
-        <div class="card-type">Type <span>C</span> · feminist theory</div>
+      <div class="card">
+        <div class="card-type"><span>feminist theory / labor</span></div>
         <div class="card-term">emotional labor</div>
         <div class="card-makes-visible">The unpaid work of managing others' feelings — and how unevenly it's distributed.</div>
         <div class="card-meta">MAKES VISIBLE → invisible gendered work</div>
       </div>
 
-      <div class="card" data-type="D">
-        <div class="card-type">Type <span>D</span> · post-growth</div>
+      <div class="card">
+        <div class="card-type"><span>commons / post-growth</span></div>
         <div class="card-term">commoning</div>
         <div class="card-makes-visible">Resources stewarded collectively as an active practice, not a legal status.</div>
-        <div class="card-meta">BREAKS → public/private binary</div>
+        <div class="card-meta">TURNS BINARY INTO PRACTICE → public/private</div>
       </div>
 
-      <div class="card" data-type="D">
-        <div class="card-type">Type <span>D</span> · degrowth</div>
+      <div class="card">
+        <div class="card-type"><span>degrowth</span></div>
         <div class="card-term">sufficiency</div>
         <div class="card-makes-visible">"Enough" as a positive goal rather than a concession to scarcity.</div>
-        <div class="card-meta">DISPLACES → "sacrifice", "austerity"</div>
+        <div class="card-meta">REFRAMES → "sacrifice" as choice</div>
       </div>
 
-      <div class="card" data-type="D">
-        <div class="card-type">Type <span>D</span> · solidarity econ</div>
+      <div class="card">
+        <div class="card-type"><span>solidarity economy</span></div>
         <div class="card-term">mutual aid</div>
         <div class="card-makes-visible">Horizontal support networks that reject the charity / recipient hierarchy.</div>
         <div class="card-meta">BREAKS → donor / beneficiary framing</div>
@@ -764,26 +718,21 @@
       </div>
 
       <div class="form-group">
-        <label>Community Type <span class="required">*</span></label>
-        <select name="community_type" required>
-          <option value="" disabled selected>Select a frontier type</option>
-          <option value="A">A — Technological (AI, crypto, open source, biohacking)</option>
-          <option value="B">B — Social / Lived (queer, neurodivergent, new work/housing)</option>
-          <option value="C">C — Therapeutic-Reflective (trauma, attachment, mindfulness)</option>
-          <option value="D">D — Economic-Organizational (commons, cooperatives, degrowth)</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Specific Community <span class="required">*</span></label>
-        <span class="hint">Which specific community or context does this term come from?</span>
-        <input type="text" name="community_specific" required placeholder="e.g., ADHD community, degrowth movement, open-source developers">
+        <label>Where does it come from? <span class="required">*</span></label>
+        <span class="hint">Which community, practice, or context coined or uses this term?</span>
+        <input type="text" name="community" required placeholder="e.g., ADHD community, degrowth movement, open-source developers, queer theory">
       </div>
 
       <div class="form-group">
         <label>What does this term make visible? <span class="required">*</span></label>
         <span class="hint">What phenomenon does this term name that was previously unnamed?</span>
         <textarea name="makes_visible" required placeholder="Describe what couldn't be said — or thought clearly — before this term existed."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>What kind of shift does it perform?</label>
+        <span class="hint">Optional. How does it change our thinking? e.g., "makes invisible work visible", "breaks a binary into a spectrum", "reframes a deficit as a difference"</span>
+        <input type="text" name="pattern" placeholder="In your own words — there are no fixed categories here.">
       </div>
 
       <div class="form-group">
@@ -828,25 +777,6 @@
 </footer>
 
 <script>
-  // Filter
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.card');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'all' || card.dataset.type === filter) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    });
-  });
-
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
@@ -880,9 +810,9 @@
 
     const data = {
       term: form.term.value.trim(),
-      community_type: form.community_type.value,
-      community_specific: form.community_specific.value.trim(),
+      community: form.community.value.trim(),
       makes_visible: form.makes_visible.value.trim(),
+      pattern: form.pattern.value.trim(),
       citation: form.citation.value.trim(),
       context: form.context.value.trim(),
       submitter_name: form.submitter_name.value.trim(),

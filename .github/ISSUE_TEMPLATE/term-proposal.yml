@@ -21,25 +21,12 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: community_type
-    attributes:
-      label: Community Type
-      description: "Which frontier does this term come from?"
-      options:
-        - "A — Technological (AI, crypto, open source, biohacking)"
-        - "B — Social / Lived (queer, neurodivergent, new work/housing)"
-        - "C — Therapeutic-Reflective (trauma, attachment, mindfulness)"
-        - "D — Economic-Organizational (commons, cooperatives, degrowth)"
-    validations:
-      required: true
-
   - type: input
-    id: community_specific
+    id: community
     attributes:
-      label: Specific Community
-      description: "Which specific community or context does this term come from?"
-      placeholder: "e.g., software development, ADHD community, degrowth movement"
+      label: Where does it come from?
+      description: "Which community, practice, or context coined or uses this term?"
+      placeholder: "e.g., ADHD community, degrowth movement, open-source developers, queer theory"
     validations:
       required: true
 
@@ -48,9 +35,18 @@ body:
     attributes:
       label: What does this term make visible?
       description: "What phenomenon does this term name that was previously unnamed or invisible?"
-      placeholder: "Describe what couldn't be said before this term existed"
+      placeholder: "Describe what couldn't be said — or thought clearly — before this term existed."
     validations:
       required: true
+
+  - type: input
+    id: pattern
+    attributes:
+      label: What kind of shift does it perform? (optional)
+      description: "How does it change our thinking? There are no fixed categories — describe in your own words."
+      placeholder: "e.g., makes invisible work visible, reframes a deficit as a difference, breaks a binary into a spectrum"
+    validations:
+      required: false
 
   - type: textarea
     id: citation
@@ -66,7 +62,7 @@ body:
     id: context
     attributes:
       label: Additional context (optional)
-      description: "Any additional context — when did this term emerge? What older term does it displace or complicate?"
-      placeholder: "e.g., Displaces 'tl;dr' as generic dismissal. Emerged around 2024-2025."
+      description: "When did this term emerge? What older term does it displace or complicate?"
+      placeholder: "e.g., Emerged around 2024. Displaces 'laziness' framing. Related to..."
     validations:
       required: false

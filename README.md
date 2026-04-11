@@ -10,15 +10,6 @@ This project maps that emerging language: documenting where new terms come from,
 
 **This is a response to Kinsey Carlson's essay ["Everything's changing and we don't have the words"](https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont) (April 2026).**
 
-## Community Types
-
-We track terms across four frontier types:
-
-- **Type A** — Technological Frontiers (AI, crypto, open source, biohacking)
-- **Type B** — Social / Lived Frontiers (queer communities, neurodivergence, new work/housing forms)
-- **Type C** — Therapeutic-Reflective Frontiers (trauma language, attachment theory, mindfulness)
-- **Type D** — Economic-Organizational Frontiers (commons, cooperatives, degrowth)
-
 ## How to Contribute
 
 We welcome term proposals from anyone who has encountered a new term in lived practice. **No AI-generated submissions** — this is methodological, not qualitative: we study words born of experience.
@@ -32,9 +23,10 @@ We welcome term proposals from anyone who has encountered a new term in lived pr
 ### Required for Every Submission
 
 1. **The term** itself
-2. **Community / type** — where does it come from?
-3. **A concrete citation** from actual usage (quote with source — not paraphrased, not invented)
-4. **What it makes visible** — why does this term matter? What couldn't we say before?
+2. **Where it comes from** — which community, practice, or context?
+3. **What it makes visible** — what couldn't we say or think clearly before?
+4. **A concrete citation** from actual usage (quote with source — not paraphrased, not invented)
+5. **What kind of shift it performs** (optional) — in your own words, no fixed categories
 
 ## Principles
 
