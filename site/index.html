@@ -558,89 +558,7 @@
 
     <div class="grid reveal" id="grid">
 
-      <div class="card">
-        <div class="card-type"><span>AI discourse</span></div>
-        <div class="card-term">ai;dr</div>
-        <div class="card-makes-visible">AI-generated text that can be safely ignored — a reading stance for a new textual ecology.</div>
-        <div class="card-meta">DISPLACES → "tl;dr" as generic dismissal</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>software dev</span></div>
-        <div class="card-term">vibe-coding</div>
-        <div class="card-makes-visible">Writing software by describing intent to a model rather than by composing syntax.</div>
-        <div class="card-meta">DISPLACES → "prototyping", "scripting"</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>online culture</span></div>
-        <div class="card-term">slop</div>
-        <div class="card-makes-visible">Low-effort machine-generated content that pollutes shared information spaces.</div>
-        <div class="card-meta">MAKES VISIBLE → a new category of pollution</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>queer communities</span></div>
-        <div class="card-term">chosen family</div>
-        <div class="card-makes-visible">Kinship built from care and commitment rather than biology or law.</div>
-        <div class="card-meta">BREAKS → family as biological unit</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>labor / new work</span></div>
-        <div class="card-term">quiet quitting</div>
-        <div class="card-makes-visible">Doing one's job without the performative enthusiasm once treated as mandatory.</div>
-        <div class="card-meta">MAKES VISIBLE → unpaid emotional performance</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>neurodivergent communities</span></div>
-        <div class="card-term">masking</div>
-        <div class="card-makes-visible">The unseen cognitive labor of performing neurotypicality in public.</div>
-        <div class="card-meta">MAKES VISIBLE → hidden adaptation cost</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>family therapy</span></div>
-        <div class="card-term">parentification</div>
-        <div class="card-makes-visible">When a child is made to carry emotional responsibility for a parent.</div>
-        <div class="card-meta">NAMES → a silent family pattern</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>ADHD / neurodivergent</span></div>
-        <div class="card-term">rejection sensitivity</div>
-        <div class="card-makes-visible">A physiological intensity of response to perceived rejection, not a character flaw.</div>
-        <div class="card-meta">REFRAMES → "overreaction" as neurology</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>feminist theory / labor</span></div>
-        <div class="card-term">emotional labor</div>
-        <div class="card-makes-visible">The unpaid work of managing others' feelings — and how unevenly it's distributed.</div>
-        <div class="card-meta">MAKES VISIBLE → invisible gendered work</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>commons / post-growth</span></div>
-        <div class="card-term">commoning</div>
-        <div class="card-makes-visible">Resources stewarded collectively as an active practice, not a legal status.</div>
-        <div class="card-meta">TURNS BINARY INTO PRACTICE → public/private</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>degrowth</span></div>
-        <div class="card-term">sufficiency</div>
-        <div class="card-makes-visible">"Enough" as a positive goal rather than a concession to scarcity.</div>
-        <div class="card-meta">REFRAMES → "sacrifice" as choice</div>
-      </div>
-
-      <div class="card">
-        <div class="card-type"><span>solidarity economy</span></div>
-        <div class="card-term">mutual aid</div>
-        <div class="card-makes-visible">Horizontal support networks that reject the charity / recipient hierarchy.</div>
-        <div class="card-meta">BREAKS → donor / beneficiary framing</div>
-      </div>
+      <!-- Cards rendered dynamically from API -->
 
     </div>
 
@@ -777,7 +695,76 @@
 </footer>
 
 <script>
-  // Reveal on scroll
+  // ── Load terms from API ──────────────────────────────────
+
+  const EDGE_LABELS = {
+    displaces: 'DISPLACES',
+    performs_pattern: 'PATTERN',
+    emerges_from: 'FROM',
+    related_to: 'RELATED',
+    cited_in: 'CITED IN',
+  };
+
+  function buildCardMeta(edges) {
+    const parts = [];
+    for (const edge of edges) {
+      if (edge.direction === 'incoming') continue;
+      if (edge.type === 'emerges_from') continue; // shown in card-type
+      const label = EDGE_LABELS[edge.type] || edge.type.toUpperCase();
+      const target = edge.target_freetext || (edge.target && edge.target.label) || '';
+      if (target) parts.push(label + ' \u2192 ' + target);
+    }
+    return parts.join(' · ');
+  }
+
+  function getCommunityLabel(edges) {
+    const e = edges.find(e => e.type === 'emerges_from' && e.target);
+    return e ? e.target.label : '';
+  }
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  async function loadTerms() {
+    const grid = document.getElementById('grid');
+    try {
+      const resp = await fetch('/liminal-vocab/api/terms');
+      if (!resp.ok) throw new Error('API error');
+      const terms = await resp.json();
+
+      grid.innerHTML = '';
+      for (const term of terms) {
+        const community = getCommunityLabel(term.edges || []);
+        const meta = buildCardMeta(term.edges || []);
+        const label = term.labels.en || Object.values(term.labels)[0] || term.id;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.community = community.toLowerCase();
+        card.dataset.pattern = (term.edges || [])
+          .filter(e => e.type === 'performs_pattern' && e.target)
+          .map(e => e.target.id).join(' ');
+
+        card.innerHTML =
+          '<div class="card-type"><span>' + escapeHtml(community) + '</span></div>' +
+          '<div class="card-term">' + escapeHtml(label) + '</div>' +
+          '<div class="card-makes-visible">' + escapeHtml(term.makes_visible || '') + '</div>' +
+          (meta ? '<div class="card-meta">' + escapeHtml(meta) + '</div>' : '');
+
+        grid.appendChild(card);
+      }
+    } catch (err) {
+      grid.innerHTML = '<div class="card"><div class="card-term">Could not load terms</div><div class="card-makes-visible">' + escapeHtml(err.message) + '</div></div>';
+    }
+  }
+
+  loadTerms();
+
+  // ── Reveal on scroll ──────────────────────────────────
+
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

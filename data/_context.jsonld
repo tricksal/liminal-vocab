@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "lv": "https://liminal-vocab.org/schema/",
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "id": "@id",
+    "type": "@type",
+    "labels": "skos:prefLabel",
+    "definitions": "skos:definition",
+    "emerges_from": "lv:emergesFrom",
+    "performs_pattern": "lv:performsPattern",
+    "displaces": "lv:displaces",
+    "related_to": "skos:related",
+    "cited_in": "schema:citation",
+    "makes_visible": "lv:makesVisible"
+  }
+}

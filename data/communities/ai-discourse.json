@@ -1,0 +1,6 @@
+{
+  "id": "ai-discourse",
+  "type": "Community",
+  "labels": { "en": "AI discourse", "de": "KI-Diskurs" },
+  "description": { "en": "Public conversation around artificial intelligence, its outputs, and its cultural impact." }
+}

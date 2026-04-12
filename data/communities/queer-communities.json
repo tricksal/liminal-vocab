@@ -1,0 +1,6 @@
+{
+  "id": "queer-communities",
+  "type": "Community",
+  "labels": { "en": "Queer communities", "de": "Queere Communities" },
+  "description": { "en": "LGBTQ+ communities developing language for non-normative forms of kinship, identity, and belonging." }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "family-therapy",
+  "type": "Community",
+  "labels": { "en": "Family therapy", "de": "Familientherapie" },
+  "description": { "en": "Clinicians and clients naming dysfunctional family dynamics that were previously invisible or normalized." }
+}

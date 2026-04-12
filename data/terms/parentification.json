@@ -1,0 +1,15 @@
+{
+  "id": "parentification",
+  "type": "Term",
+  "labels": { "en": "parentification" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "When a child is made to carry emotional responsibility for a parent."
+  },
+  "makes_visible": "A silent family dynamic where the child becomes the caretaker — previously normalized as 'being mature for your age'.",
+  "approx_emergence": "1970s (clinical), 2010s (popular)",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "breaks-false-unity",
+  "type": "Pattern",
+  "labels": {
+    "en": "Breaks apart a false unity",
+    "de": "Bricht eine falsche Einheit auf"
+  },
+  "description": {
+    "en": "The term splits something that was treated as a single, natural category into its actual components or alternatives."
+  }
+}

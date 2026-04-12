@@ -1,0 +1,15 @@
+{
+  "id": "chosen-family",
+  "type": "Term",
+  "labels": { "en": "chosen family" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "Kinship built from care and commitment rather than biology or law."
+  },
+  "makes_visible": "That family can be constituted through choice and practice, not only through blood or legal bond.",
+  "approx_emergence": "1980s",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

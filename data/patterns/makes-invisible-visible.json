@@ -1,0 +1,11 @@
+{
+  "id": "makes-invisible-visible",
+  "type": "Pattern",
+  "labels": {
+    "en": "Makes the invisible visible",
+    "de": "Macht Unsichtbares sichtbar"
+  },
+  "description": {
+    "en": "The term names a phenomenon that was always present but had no language — and therefore no cognitive grip."
+  }
+}

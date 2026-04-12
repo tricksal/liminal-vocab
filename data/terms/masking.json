@@ -1,0 +1,15 @@
+{
+  "id": "masking",
+  "type": "Term",
+  "labels": { "en": "masking" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "The unseen cognitive labor of performing neurotypicality in public."
+  },
+  "makes_visible": "The hidden adaptation cost that neurodivergent people pay to navigate neurotypical environments.",
+  "approx_emergence": "2010s",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

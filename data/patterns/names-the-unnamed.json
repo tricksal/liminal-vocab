@@ -1,0 +1,11 @@
+{
+  "id": "names-the-unnamed",
+  "type": "Pattern",
+  "labels": {
+    "en": "Gives a name to a previously unnamed experience",
+    "de": "Benennt eine bisher namenlose Erfahrung"
+  },
+  "description": {
+    "en": "The term creates a handle for something people felt privately but had no way to share or discuss — the naming itself is an act of permission."
+  }
+}

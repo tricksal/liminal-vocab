@@ -1,0 +1,6 @@
+{
+  "id": "software-development",
+  "type": "Community",
+  "labels": { "en": "Software development", "de": "Softwareentwicklung" },
+  "description": { "en": "Developers building software, especially those working with AI-assisted tools." }
+}

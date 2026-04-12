@@ -1,0 +1,15 @@
+{
+  "id": "rejection-sensitivity",
+  "type": "Term",
+  "labels": { "en": "rejection sensitivity" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "A physiological intensity of response to perceived rejection, not a character flaw."
+  },
+  "makes_visible": "That extreme pain from social rejection can be neurological, not a failure of resilience.",
+  "approx_emergence": "2000s (clinical), 2020s (popular via ADHD community)",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

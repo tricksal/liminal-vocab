@@ -1,0 +1,57 @@
+{
+  "edges": [
+    { "type": "emerges_from", "source": "ai-dr", "target": "ai-discourse" },
+    { "type": "performs_pattern", "source": "ai-dr", "target": "makes-invisible-visible" },
+    { "type": "displaces", "source": "ai-dr", "target_freetext": "tl;dr (as generic dismissal)" },
+
+    { "type": "emerges_from", "source": "vibe-coding", "target": "software-development" },
+    { "type": "performs_pattern", "source": "vibe-coding", "target": "names-the-unnamed" },
+    { "type": "displaces", "source": "vibe-coding", "target_freetext": "prototyping, scripting" },
+
+    { "type": "emerges_from", "source": "slop", "target": "online-culture" },
+    { "type": "performs_pattern", "source": "slop", "target": "makes-invisible-visible" },
+    { "type": "displaces", "source": "slop", "target_freetext": "spam, filler" },
+
+    { "type": "emerges_from", "source": "chosen-family", "target": "queer-communities" },
+    { "type": "performs_pattern", "source": "chosen-family", "target": "breaks-false-unity" },
+    { "type": "displaces", "source": "chosen-family", "target_freetext": "family as biological unit" },
+
+    { "type": "emerges_from", "source": "quiet-quitting", "target": "labor-new-work" },
+    { "type": "performs_pattern", "source": "quiet-quitting", "target": "makes-invisible-visible" },
+
+    { "type": "emerges_from", "source": "masking", "target": "neurodivergent-communities" },
+    { "type": "performs_pattern", "source": "masking", "target": "makes-invisible-visible" },
+
+    { "type": "emerges_from", "source": "parentification", "target": "family-therapy" },
+    { "type": "performs_pattern", "source": "parentification", "target": "names-the-unnamed" },
+
+    { "type": "emerges_from", "source": "rejection-sensitivity", "target": "neurodivergent-communities" },
+    { "type": "performs_pattern", "source": "rejection-sensitivity", "target": "reframes-as-difference" },
+    { "type": "displaces", "source": "rejection-sensitivity", "target_freetext": "overreaction framing" },
+
+    { "type": "emerges_from", "source": "emotional-labor", "target": "feminist-theory" },
+    { "type": "performs_pattern", "source": "emotional-labor", "target": "makes-invisible-visible" },
+    { "type": "related_to", "source": "emotional-labor", "target": "quiet-quitting" },
+
+    { "type": "emerges_from", "source": "commoning", "target": "commons-post-growth" },
+    { "type": "performs_pattern", "source": "commoning", "target": "breaks-false-unity" },
+    { "type": "displaces", "source": "commoning", "target_freetext": "public/private binary" },
+
+    { "type": "emerges_from", "source": "sufficiency", "target": "degrowth" },
+    { "type": "performs_pattern", "source": "sufficiency", "target": "reframes-as-difference" },
+    { "type": "displaces", "source": "sufficiency", "target_freetext": "sacrifice, austerity" },
+
+    { "type": "emerges_from", "source": "mutual-aid", "target": "solidarity-economy" },
+    { "type": "performs_pattern", "source": "mutual-aid", "target": "breaks-false-unity" },
+    { "type": "displaces", "source": "mutual-aid", "target_freetext": "donor / beneficiary framing" },
+
+    { "type": "emerges_from", "source": "solastalgia", "target": "environmental-philosophy" },
+    { "type": "performs_pattern", "source": "solastalgia", "target": "names-the-unnamed" },
+    { "type": "cited_in", "source": "solastalgia", "target": "albrecht-2005-solastalgia" },
+    { "type": "displaces", "source": "solastalgia", "target_freetext": "eco-anxiety (too diffuse)" },
+
+    { "type": "related_to", "source": "masking", "target": "rejection-sensitivity" },
+    { "type": "related_to", "source": "chosen-family", "target": "mutual-aid" },
+    { "type": "related_to", "source": "commoning", "target": "mutual-aid" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "quiet-quitting",
+  "type": "Term",
+  "labels": { "en": "quiet quitting" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "Doing one's job without the performative enthusiasm once treated as mandatory."
+  },
+  "makes_visible": "The unpaid emotional performance that workplaces extract on top of actual labor.",
+  "approx_emergence": "2022",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

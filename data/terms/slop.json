@@ -1,0 +1,15 @@
+{
+  "id": "slop",
+  "type": "Term",
+  "labels": { "en": "slop" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "Low-effort machine-generated content that pollutes shared information spaces."
+  },
+  "makes_visible": "A new category of information pollution distinct from spam — content that mimics substance but carries none.",
+  "approx_emergence": "2024",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}

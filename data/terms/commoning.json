@@ -1,0 +1,15 @@
+{
+  "id": "commoning",
+  "type": "Term",
+  "labels": { "en": "commoning" },
+  "primary_language": "en",
+  "definitions": {
+    "en": "Resources stewarded collectively as an active practice, not a legal status."
+  },
+  "makes_visible": "That shared ownership is a verb — an ongoing social practice — not just a property category.",
+  "approx_emergence": "2000s",
+  "status": "accepted",
+  "editors": ["@tricksal"],
+  "created": "2026-04-10",
+  "modified": "2026-04-12"
+}
