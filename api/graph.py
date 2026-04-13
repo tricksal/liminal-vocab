@@ -1,5 +1,5 @@
 """
-Liminal Vocab — In-memory knowledge graph built from JSON files in data/.
+Liminal Vocab - In-memory knowledge graph built from JSON files in data/.
 
 Reads all node files (terms, communities, patterns, sources) and edges.json,
 provides lookup functions for the API.

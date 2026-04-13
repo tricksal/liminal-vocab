@@ -1,5 +1,5 @@
 """
-Liminal Vocab — API
+Liminal Vocab - API
 
 Serves the knowledge graph and receives term proposals via web form.
 """

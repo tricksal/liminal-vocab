@@ -10,7 +10,7 @@ body:
 
         Thank you for contributing to the cartography. Please fill in all required fields below.
 
-        **Important:** We study terms that emerge from lived practice in communities. AI-generated submissions are not accepted — not for quality reasons, but because the project studies words born of experience.
+        **Important:** We study terms that emerge from lived practice in communities. AI-generated submissions are not accepted. Not for quality reasons, but because the project studies words born of experience.
 
   - type: input
     id: term
@@ -35,7 +35,7 @@ body:
     attributes:
       label: What does this term make visible?
       description: "What phenomenon does this term name that was previously unnamed or invisible?"
-      placeholder: "Describe what couldn't be said — or thought clearly — before this term existed."
+      placeholder: "Describe what couldn't be said, or thought clearly, before this term existed."
     validations:
       required: true
 
@@ -43,7 +43,7 @@ body:
     id: pattern
     attributes:
       label: What kind of shift does it perform? (optional)
-      description: "How does it change our thinking? There are no fixed categories — describe in your own words."
+      description: "How does it change our thinking? There are no fixed categories. Describe in your own words."
       placeholder: "e.g., makes invisible work visible, reframes a deficit as a difference, breaks a binary into a spectrum"
     validations:
       required: false
@@ -54,7 +54,7 @@ body:
       label: Citation from actual usage
       description: "A concrete quote showing this term being used in practice, with source. Not paraphrased, not invented."
       placeholder: |
-        "Quote from actual usage" — Source (URL, publication, conversation context)
+        "Quote from actual usage" - Source (URL, publication, conversation context)
     validations:
       required: true
 

@@ -6,7 +6,7 @@
   "definitions": {
     "en": "Shorthand for text that is clearly AI-generated and can be safely skipped."
   },
-  "makes_visible": "AI-generated text that can be safely ignored — a reading stance for a new textual ecology.",
+  "makes_visible": "AI-generated text that can be safely ignored. A reading stance for a new textual ecology.",
   "approx_emergence": "2024-2025",
   "status": "accepted",
   "editors": ["@tricksal"],

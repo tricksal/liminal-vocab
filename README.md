@@ -1,10 +1,10 @@
-# Liminal Vocab — A Verbal Cartography of Liminal Times
+# Liminal Vocab: A Verbal Cartography of Liminal Times
 
-An open, curated, multilingual cartography of new terms emerging from communities of practice — making visible the phenomena for which mainstream language does not yet have words.
+An open, curated, multilingual cartography of new terms emerging from communities of practice, making visible the phenomena for which mainstream language does not yet have words.
 
 ## What This Is
 
-We live in a liminal time. The old vocabulary — *democracy, freedom, community, work* — has been hollowed out. The new vocabulary that could describe what's actually happening doesn't exist yet. But at the edges of culture, in **communities of practice**, people are already coining the words we'll all need soon.
+We live in a liminal time. The old vocabulary (*democracy, freedom, community, work*) has been hollowed out. The new vocabulary that could describe what's actually happening doesn't exist yet. But at the edges of culture, in **communities of practice**, people are already coining the words we'll all need soon.
 
 This project maps that emerging language: documenting where new terms come from, what they make visible, and which older concepts they quietly break open.
 
@@ -12,7 +12,7 @@ This project maps that emerging language: documenting where new terms come from,
 
 ## How to Contribute
 
-We welcome term proposals from anyone who has encountered a new term in lived practice. **No AI-generated submissions** — this is methodological, not qualitative: we study words born of experience.
+We welcome term proposals from anyone who has encountered a new term in lived practice. **No AI-generated submissions.** This is methodological, not qualitative: we study words born of experience.
 
 ### Submit a Term
 
@@ -23,10 +23,10 @@ We welcome term proposals from anyone who has encountered a new term in lived pr
 ### Required for Every Submission
 
 1. **The term** itself
-2. **Where it comes from** — which community, practice, or context?
-3. **What it makes visible** — what couldn't we say or think clearly before?
-4. **A concrete citation** from actual usage (quote with source — not paraphrased, not invented)
-5. **What kind of shift it performs** (optional) — in your own words, no fixed categories
+2. **Where it comes from:** which community, practice, or context?
+3. **What it makes visible:** what couldn't we say or think clearly before?
+4. **A concrete citation** from actual usage (quote with source, not paraphrased, not invented)
+5. **What kind of shift it performs** (optional): in your own words, no fixed categories
 
 ## Principles
 
@@ -39,7 +39,7 @@ We welcome term proposals from anyone who has encountered a new term in lived pr
 
 ## Status
 
-This project is in its earliest stage — a public draft, open to collaborators, critics, and especially to people already living inside arrangements that don't have names yet.
+This project is in its earliest stage: a public draft, open to collaborators, critics, and especially to people already living inside arrangements that don't have names yet.
 
 ## License
 
