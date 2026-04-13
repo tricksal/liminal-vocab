@@ -19,6 +19,19 @@
     --green: #2d6a4f;
   }
 
+  [data-theme] { transition: background-color 0.3s ease, color 0.3s ease; }
+
+  [data-theme="dark"] {
+    --paper: #1a1a1e;
+    --paper-deep: #232328;
+    --ink: #e0ddd6;
+    --ink-soft: #a8a4a0;
+    --ink-faded: #706c68;
+    --accent: #e05a3a;
+    --rule: #333338;
+    --green: #5aaa7a;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
@@ -47,8 +60,11 @@
   }
   .eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--ink-faded); }
 
-  .lang-switch {
+  .header-controls {
     margin-left: auto;
+    display: flex; gap: 12px; align-items: center;
+  }
+  .lang-switch {
     display: flex; gap: 4px;
   }
   .lang-switch button {
@@ -60,6 +76,15 @@
   }
   .lang-switch button:hover { border-color: var(--ink); color: var(--ink); }
   .lang-switch button.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  .theme-toggle {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 10px; background: transparent;
+    border: 1px solid var(--rule); color: var(--ink-faded);
+    cursor: pointer; transition: all 0.25s ease; border-radius: 2px;
+  }
+  .theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
 
   h1 {
     font-family: "Fraunces", Georgia, serif;
@@ -183,8 +208,8 @@
   .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .form-result { margin-top: 24px; padding: 20px 24px; border-radius: 2px; font-size: 16px; display: none; }
-  .form-result.success { display: block; background: #e8f5e9; border: 1px solid var(--green); color: var(--green); }
-  .form-result.error { display: block; background: #fbe9e7; border: 1px solid var(--accent); color: var(--accent); }
+  .form-result.success { display: block; background: color-mix(in srgb, var(--green) 12%, var(--paper)); border: 1px solid var(--green); color: var(--green); }
+  .form-result.error { display: block; background: color-mix(in srgb, var(--accent) 12%, var(--paper)); border: 1px solid var(--accent); color: var(--accent); }
   .form-result a { color: inherit; font-weight: 500; }
 
   .or-github { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--rule); font-size: 15px; color: var(--ink-faded); }
@@ -218,9 +243,12 @@
   <div class="wrap">
     <div class="eyebrow reveal">
       <span>Liminal Vocab · April 2026</span>
-      <div class="lang-switch">
-        <button data-lang="en" class="active">EN</button>
-        <button data-lang="de">DE</button>
+      <div class="header-controls">
+        <div class="lang-switch">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="de">DE</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
       </div>
     </div>
     <h1 class="reveal" data-i18n="hero_title"></h1>
@@ -659,6 +687,33 @@ form.addEventListener('submit', async (e) => {
     btn.textContent = t('form_submit_btn');
   }
 });
+
+
+// ── Theme toggle ──────────────────────────────────
+
+const themeBtn = document.getElementById('themeToggle');
+const THEME_LABELS = { light: '◐ Dark', dark: '◑ Light' };
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('lv-theme', theme);
+  themeBtn.textContent = THEME_LABELS[theme];
+}
+
+themeBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// Init theme: respect saved preference, then system preference
+const savedTheme = localStorage.getItem('lv-theme');
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  applyTheme('dark');
+} else {
+  applyTheme('light');
+}
 
 
 // ── Init ──────────────────────────────────
