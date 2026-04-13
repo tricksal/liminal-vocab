@@ -4,9 +4,13 @@
   "labels": { "en": "commoning" },
   "primary_language": "en",
   "definitions": {
-    "en": "Resources stewarded collectively as an active practice, not a legal status."
+    "en": "Resources stewarded collectively as an active practice, not a legal status.",
+    "de": "Ressourcen, die kollektiv als aktive Praxis verwaltet werden, nicht als Rechtsstatus."
   },
-  "makes_visible": "That shared ownership is a verb, an ongoing social practice, not just a property category.",
+  "makes_visible": {
+    "en": "That shared ownership is a verb, an ongoing social practice, not just a property category.",
+    "de": "Dass gemeinsames Eigentum ein Verb ist, eine fortlaufende soziale Praxis, nicht bloß eine Eigentumskategorie."
+  },
   "approx_emergence": "2000s",
   "status": "accepted",
   "editors": ["@tricksal"],

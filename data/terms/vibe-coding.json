@@ -4,9 +4,13 @@
   "labels": { "en": "vibe-coding" },
   "primary_language": "en",
   "definitions": {
-    "en": "Writing software by describing intent to an AI model rather than composing syntax directly."
+    "en": "Writing software by describing intent to an AI model rather than composing syntax directly.",
+    "de": "Software schreiben, indem man einer KI die Absicht beschreibt, statt selbst Syntax zu verfassen."
   },
-  "makes_visible": "A new mode of programming where the human provides direction and taste, not instructions.",
+  "makes_visible": {
+    "en": "A new mode of programming where the human provides direction and taste, not instructions.",
+    "de": "Ein neuer Modus des Programmierens, in dem der Mensch Richtung und Geschmack vorgibt, keine Anweisungen."
+  },
   "approx_emergence": "2025",
   "status": "accepted",
   "editors": ["@tricksal"],

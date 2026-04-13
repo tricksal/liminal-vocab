@@ -4,9 +4,13 @@
   "labels": { "en": "rejection sensitivity" },
   "primary_language": "en",
   "definitions": {
-    "en": "A physiological intensity of response to perceived rejection, not a character flaw."
+    "en": "A physiological intensity of response to perceived rejection, not a character flaw.",
+    "de": "Eine physiologisch bedingte Intensität der Reaktion auf wahrgenommene Zurückweisung, kein Charakterfehler."
   },
-  "makes_visible": "That extreme pain from social rejection can be neurological, not a failure of resilience.",
+  "makes_visible": {
+    "en": "That extreme pain from social rejection can be neurological, not a failure of resilience.",
+    "de": "Dass extremer Schmerz durch soziale Zurückweisung neurologisch bedingt sein kann, kein Versagen an Resilienz."
+  },
   "approx_emergence": "2000s (clinical), 2020s (popular via ADHD community)",
   "status": "accepted",
   "editors": ["@tricksal"],

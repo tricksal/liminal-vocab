@@ -13,6 +13,13 @@ from typing import Any
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 
+def _localize(value: Any, lang: str) -> Any:
+    """Resolve a field that may be a plain string or a {lang: text} dict."""
+    if isinstance(value, dict) and not any(k in value for k in ("id", "type")):
+        return value.get(lang) or value.get("en") or next(iter(value.values()), None)
+    return value
+
+
 class Graph:
     def __init__(self):
         self.nodes: dict[str, dict] = {}
@@ -68,7 +75,21 @@ class Graph:
             return None
 
         edges = self.get_edges_from(term_id)
-        resolved = {**term, "edges": []}
+
+        # Resolve multilingual fields
+        label = term.get("labels", {}).get(lang) or term.get("labels", {}).get("en") or term["id"]
+        original_label = term.get("labels", {}).get(term.get("primary_language", "en"), term["id"])
+        has_equivalent = lang in term.get("labels", {})
+
+        resolved = {
+            **term,
+            "label": label,
+            "original_label": original_label,
+            "has_equivalent": has_equivalent,
+            "definitions": _localize(term.get("definitions", {}), lang),
+            "makes_visible": _localize(term.get("makes_visible", ""), lang),
+            "edges": [],
+        }
 
         for edge in edges:
             edge_data: dict[str, Any] = {"type": edge["type"]}

@@ -4,9 +4,13 @@
   "labels": { "en": "solastalgia" },
   "primary_language": "en",
   "definitions": {
-    "en": "The distress caused by environmental change happening in your home environment while you still live there."
+    "en": "The distress caused by environmental change happening in your home environment while you still live there.",
+    "de": "Das Leid, das entsteht, wenn sich die eigene Heimatumgebung verändert, während man noch dort lebt."
   },
-  "makes_visible": "A form of homesickness you experience at home: the ache of watching a familiar landscape become unrecognizable.",
+  "makes_visible": {
+    "en": "A form of homesickness you experience at home: the ache of watching a familiar landscape become unrecognizable.",
+    "de": "Eine Form von Heimweh, die man zu Hause erlebt: der Schmerz, eine vertraute Landschaft unkenntlich werden zu sehen."
+  },
   "approx_emergence": "2005",
   "status": "accepted",
   "editors": ["@tricksal"],

@@ -4,9 +4,13 @@
   "labels": { "en": "sufficiency", "de": "Suffizienz" },
   "primary_language": "en",
   "definitions": {
-    "en": "'Enough' as a positive goal rather than a concession to scarcity."
+    "en": "'Enough' as a positive goal rather than a concession to scarcity.",
+    "de": "'Genug' als positives Ziel, nicht als Zugeständnis an den Mangel."
   },
-  "makes_visible": "That choosing 'enough' can be an act of agency, not deprivation.",
+  "makes_visible": {
+    "en": "That choosing 'enough' can be an act of agency, not deprivation.",
+    "de": "Dass die Wahl von 'genug' ein Akt der Selbstbestimmung sein kann, kein Verzicht."
+  },
   "approx_emergence": "1990s (ecological economics)",
   "status": "accepted",
   "editors": ["@tricksal"],

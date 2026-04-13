@@ -1,12 +1,19 @@
 {
   "id": "mutual-aid",
   "type": "Term",
-  "labels": { "en": "mutual aid" },
+  "labels": {
+    "en": "mutual aid",
+    "de": "Gegenseitige Hilfe"
+  },
   "primary_language": "en",
   "definitions": {
-    "en": "Horizontal support networks that reject the charity / recipient hierarchy."
+    "en": "Horizontal support networks that reject the charity / recipient hierarchy.",
+    "de": "Horizontale Unterstützungsnetzwerke, die die Hierarchie von Wohltätigkeit und Empfängern ablehnen."
   },
-  "makes_visible": "That help can flow without a power differential: no donors, no beneficiaries, just reciprocity.",
+  "makes_visible": {
+    "en": "That help can flow without a power differential: no donors, no beneficiaries, just reciprocity.",
+    "de": "Dass Hilfe ohne Machtgefälle fließen kann: keine Spender, keine Empfänger, nur Gegenseitigkeit."
+  },
   "approx_emergence": "1902 (Kropotkin), 2020s (resurgence)",
   "status": "accepted",
   "editors": ["@tricksal"],

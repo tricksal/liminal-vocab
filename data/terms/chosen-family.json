@@ -1,12 +1,19 @@
 {
   "id": "chosen-family",
   "type": "Term",
-  "labels": { "en": "chosen family" },
+  "labels": {
+    "en": "chosen family",
+    "de": "Wahlfamilie"
+  },
   "primary_language": "en",
   "definitions": {
-    "en": "Kinship built from care and commitment rather than biology or law."
+    "en": "Kinship built from care and commitment rather than biology or law.",
+    "de": "Verwandtschaft, die auf Fürsorge und Verbindlichkeit beruht, nicht auf Biologie oder Recht."
   },
-  "makes_visible": "That family can be constituted through choice and practice, not only through blood or legal bond.",
+  "makes_visible": {
+    "en": "That family can be constituted through choice and practice, not only through blood or legal bond.",
+    "de": "Dass Familie durch Wahl und Praxis entstehen kann, nicht nur durch Blut oder Gesetz."
+  },
   "approx_emergence": "1980s",
   "status": "accepted",
   "editors": ["@tricksal"],

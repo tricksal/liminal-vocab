@@ -4,9 +4,13 @@
   "labels": { "en": "masking" },
   "primary_language": "en",
   "definitions": {
-    "en": "The unseen cognitive labor of performing neurotypicality in public."
+    "en": "The unseen cognitive labor of performing neurotypicality in public.",
+    "de": "Die unsichtbare kognitive Arbeit, in der Öffentlichkeit Neurotypizität zu performen."
   },
-  "makes_visible": "The hidden adaptation cost that neurodivergent people pay to navigate neurotypical environments.",
+  "makes_visible": {
+    "en": "The hidden adaptation cost that neurodivergent people pay to navigate neurotypical environments.",
+    "de": "Die verborgenen Anpassungskosten, die neurodivergente Menschen zahlen, um sich in neurotypischen Umgebungen zu bewegen."
+  },
   "approx_emergence": "2010s",
   "status": "accepted",
   "editors": ["@tricksal"],
