@@ -1,0 +1,13 @@
+{
+  "id": "algorithmic-loneliness",
+  "type": "Wanted",
+  "description": {
+    "en": "The specific isolation that comes from being surrounded by content that was selected for you by an algorithm, but that connects you to no one. A feed full of people, none of whom know you exist.",
+    "de": "Die spezifische Isolation, die entsteht, wenn man von Inhalten umgeben ist, die ein Algorithmus für einen ausgewählt hat, die einen aber mit niemandem verbinden. Ein Feed voller Menschen, von denen keiner weiß, dass man existiert."
+  },
+  "submitted_by": "",
+  "created": "2026-04-15",
+  "status": "open",
+  "responses": [],
+  "tags": ["technology", "connection", "social-media"]
+}

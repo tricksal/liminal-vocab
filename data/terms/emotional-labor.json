@@ -1,7 +1,9 @@
 {
   "id": "emotional-labor",
   "type": "Term",
-  "labels": { "en": "emotional labor" },
+  "labels": {
+    "en": "emotional labor"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "The unpaid work of managing others' feelings, and how unevenly it's distributed.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "1983 (Hochschild), 2010s (popular feminist discourse)",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

@@ -1,7 +1,9 @@
 {
   "id": "slop",
   "type": "Term",
-  "labels": { "en": "slop" },
+  "labels": {
+    "en": "slop"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "Low-effort machine-generated content that pollutes shared information spaces.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2024",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

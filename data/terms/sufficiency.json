@@ -1,7 +1,10 @@
 {
   "id": "sufficiency",
   "type": "Term",
-  "labels": { "en": "sufficiency", "de": "Suffizienz" },
+  "labels": {
+    "en": "sufficiency",
+    "de": "Suffizienz"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "'Enough' as a positive goal rather than a concession to scarcity.",
@@ -13,7 +16,10 @@
   },
   "approx_emergence": "1990s (ecological economics)",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

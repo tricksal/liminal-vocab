@@ -1,7 +1,9 @@
 {
   "id": "quiet-quitting",
   "type": "Term",
-  "labels": { "en": "quiet quitting" },
+  "labels": {
+    "en": "quiet quitting"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "Doing one's job without the performative enthusiasm once treated as mandatory.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2022",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

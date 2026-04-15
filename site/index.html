@@ -47,69 +47,168 @@
     text-rendering: optimizeLegibility;
   }
 
+  ::selection { background: var(--accent); color: var(--paper); }
+
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 32px; }
   .wide { max-width: 960px; margin: 0 auto; padding: 0 32px; }
 
-  header.hero { padding: 140px 0 120px; border-bottom: 1px solid var(--rule); }
+  /* ---- Top Nav Bar ---- */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 16px;
+    transition: background-color 0.3s ease;
+  }
 
-  .eyebrow {
+  .top-bar-logo {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 48, "SOFT" 40;
+    font-weight: 440;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .top-bar-logo:hover { color: var(--accent); }
+
+  .top-bar-nav {
+    display: flex;
+    gap: 4px;
+    margin: 0 auto;
+  }
+
+  .nav-link {
     font-family: "JetBrains Mono", monospace;
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-faded); margin-bottom: 48px;
-    display: flex; gap: 24px; align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
   }
-  .eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--ink-faded); }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-  .header-controls {
-    margin-left: auto;
-    display: flex; gap: 12px; align-items: center;
+  .top-bar-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
   }
+
   .lang-switch {
-    display: flex; gap: 4px;
+    display: flex;
+    gap: 4px;
   }
+
   .lang-switch button {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 4px 10px; background: transparent;
-    border: 1px solid var(--rule); color: var(--ink-faded);
-    cursor: pointer; transition: all 0.25s ease; border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-faded);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
   }
   .lang-switch button:hover { border-color: var(--ink); color: var(--ink); }
   .lang-switch button.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
   .theme-toggle {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 4px 10px; background: transparent;
-    border: 1px solid var(--rule); color: var(--ink-faded);
-    cursor: pointer; transition: all 0.25s ease; border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-faded);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
   }
   .theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* ---- Hero ---- */
+  header.hero {
+    padding: 80px 0 70px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 48px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--ink-faded); }
 
   h1 {
     font-family: "Fraunces", Georgia, serif;
     font-variation-settings: "opsz" 144, "SOFT" 30;
-    font-weight: 340; font-size: clamp(44px, 7vw, 88px);
-    line-height: 0.98; letter-spacing: -0.02em; margin-bottom: 56px;
+    font-weight: 340;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
   }
-  h1 em { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 80; color: var(--accent); }
+  h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    color: var(--accent);
+  }
 
-  .lede { font-size: 22px; line-height: 1.55; color: var(--ink-soft); max-width: 580px; font-weight: 360; }
+  .lede {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 580px;
+    font-weight: 360;
+  }
 
+  /* ---- Sections ---- */
   section { padding: 110px 0; border-bottom: 1px solid var(--rule); }
 
   .section-label {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--ink-faded); margin-bottom: 40px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 40px;
   }
 
   h2 {
     font-family: "Fraunces", Georgia, serif;
     font-variation-settings: "opsz" 72, "SOFT" 50;
-    font-weight: 360; font-size: clamp(32px, 4vw, 44px);
-    line-height: 1.1; letter-spacing: -0.015em;
-    margin-bottom: 36px; max-width: 560px;
+    font-weight: 360;
+    font-size: clamp(32px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 36px;
+    max-width: 560px;
   }
   h2 em { font-style: italic; color: var(--accent); }
 
@@ -119,277 +218,685 @@
   .pull {
     font-family: "Fraunces", Georgia, serif;
     font-variation-settings: "opsz" 72, "SOFT" 60;
-    font-style: italic; font-weight: 340; font-size: 26px; line-height: 1.35;
-    color: var(--ink); padding: 32px 0 32px 28px;
-    border-left: 2px solid var(--accent); margin: 48px 0; max-width: 600px;
+    font-style: italic;
+    font-weight: 340;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--ink);
+    padding: 32px 0 32px 28px;
+    border-left: 2px solid var(--accent);
+    margin: 48px 0;
+    max-width: 600px;
   }
   .pull cite {
-    display: block; margin-top: 16px;
+    display: block;
+    margin-top: 16px;
     font-family: "JetBrains Mono", monospace;
-    font-style: normal; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-faded);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
   }
 
+  /* ---- View Toggle ---- */
+  .view-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .view-btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+  }
+  .view-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .view-btn.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  /* ---- Explorer / Cards ---- */
   .explorer-intro { margin-bottom: 56px; }
 
   .grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2px; background: var(--rule); border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
   }
 
   .card {
-    background: var(--paper); padding: 28px 26px 30px;
-    transition: background 0.3s ease; cursor: default;
-    display: flex; flex-direction: column; min-height: 220px;
+    background: var(--paper);
+    padding: 28px 26px 30px;
+    transition: background 0.3s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
   }
   .card:hover { background: var(--paper-deep); }
 
   .card-type {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-faded); margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 14px;
   }
   .card-type span { color: var(--accent); font-weight: 500; }
 
   .card-term {
     font-family: "Fraunces", Georgia, serif;
     font-variation-settings: "opsz" 72, "SOFT" 40;
-    font-weight: 400; font-size: 28px; line-height: 1.1;
-    letter-spacing: -0.01em; margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
   }
 
   .card-makes-visible {
-    font-size: 15px; line-height: 1.5; color: var(--ink-soft);
-    font-style: italic; margin-bottom: auto; padding-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: auto;
+    padding-bottom: 18px;
   }
 
   .card-meta {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.06em; color: var(--ink-faded);
-    padding-top: 14px; border-top: 1px dashed var(--rule);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faded);
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .card-maturity {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-top: 8px;
   }
 
   .card-no-equiv {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.06em; color: var(--accent);
-    margin-top: 6px; opacity: 0.7;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-top: 6px;
+    opacity: 0.7;
   }
+
+  .card.hidden { display: none; }
 
   .explorer-note {
-    margin-top: 36px; font-size: 14px; color: var(--ink-faded);
-    font-style: italic; max-width: 580px;
+    margin-top: 36px;
+    font-size: 14px;
+    color: var(--ink-faded);
+    font-style: italic;
+    max-width: 580px;
   }
 
+  /* ---- Graph View ---- */
+  .graph-container {
+    width: 100%;
+    height: 600px;
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .graph-container svg { width: 100%; height: 100%; display: block; }
+
+  .graph-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 8px 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+  }
+  .graph-tooltip.visible { opacity: 1; }
+  .graph-tooltip-type {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faded);
+    margin-bottom: 2px;
+  }
+
+  /* ---- Wanted / Gaps ---- */
+  .wanted-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .wanted-card {
+    border: 2px dashed var(--rule);
+    padding: 24px 22px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    min-height: 160px;
+  }
+  .wanted-card:hover { border-color: var(--ink-faded); }
+
+  .wanted-term {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 40;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .wanted-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: auto;
+    padding-bottom: 12px;
+  }
+
+  .wanted-tags {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faded);
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ---- Method ---- */
   .method-steps { margin-top: 48px; display: grid; gap: 48px; max-width: 640px; }
   .step { display: grid; grid-template-columns: 60px 1fr; gap: 24px; align-items: start; }
-  .step-num { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--accent); padding-top: 8px; }
-  .step-body h3 { font-family: "Fraunces", Georgia, serif; font-variation-settings: "opsz" 48; font-weight: 420; font-size: 22px; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .step-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+  .step-body h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 48;
+    font-weight: 420;
+    font-size: 22px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
   .step-body p { font-size: 17px; color: var(--ink-soft); margin-bottom: 0; }
 
+  /* ---- Principles ---- */
   .principles { margin-top: 48px; display: grid; gap: 0; max-width: 640px; }
-  .principle { padding: 28px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 32px 1fr; gap: 20px; align-items: baseline; }
+  .principle {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
   .principle:last-child { border-bottom: none; }
-  .principle-num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-faded); }
-  .principle-text { font-family: "Fraunces", Georgia, serif; font-variation-settings: "opsz" 48, "SOFT" 40; font-weight: 380; font-size: 19px; line-height: 1.4; }
-  .principle-text strong { font-weight: 520; font-style: italic; color: var(--accent); }
+  .principle-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faded);
+  }
+  .principle-text {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "opsz" 48, "SOFT" 40;
+    font-weight: 380;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+  .principle-text strong {
+    font-weight: 520;
+    font-style: italic;
+    color: var(--accent);
+  }
 
+  /* ---- Forms ---- */
   .submit-intro { margin-bottom: 48px; }
   .submit-form { max-width: 640px; }
   .form-group { margin-bottom: 32px; }
-  .form-group label { display: block; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .form-group label {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
   .form-group label .required { color: var(--accent); }
-  .form-group .hint { display: block; font-family: "Newsreader", Georgia, serif; font-size: 14px; font-style: italic; color: var(--ink-faded); margin-bottom: 10px; text-transform: none; letter-spacing: normal; }
-  .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px 16px; font-family: "Newsreader", Georgia, serif; font-size: 17px; line-height: 1.5; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; transition: border-color 0.25s ease; -webkit-appearance: none; appearance: none; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--ink); }
+  .form-group .hint {
+    display: block;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-faded);
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    transition: border-color 0.25s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
   .form-group textarea { min-height: 120px; resize: vertical; }
 
-  .submit-btn { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px 40px; background: var(--ink); border: 1px solid var(--ink); color: var(--paper); cursor: pointer; transition: all 0.25s ease; border-radius: 2px; }
+  .submit-btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+  }
   .submit-btn:hover { background: var(--accent); border-color: var(--accent); }
   .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .form-result { margin-top: 24px; padding: 20px 24px; border-radius: 2px; font-size: 16px; display: none; }
-  .form-result.success { display: block; background: color-mix(in srgb, var(--green) 12%, var(--paper)); border: 1px solid var(--green); color: var(--green); }
-  .form-result.error { display: block; background: color-mix(in srgb, var(--accent) 12%, var(--paper)); border: 1px solid var(--accent); color: var(--accent); }
+  .form-result {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 2px;
+    font-size: 16px;
+    display: none;
+  }
+  .form-result.success {
+    display: block;
+    background: color-mix(in srgb, var(--green) 12%, var(--paper));
+    border: 1px solid var(--green);
+    color: var(--green);
+  }
+  .form-result.error {
+    display: block;
+    background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
   .form-result a { color: inherit; font-weight: 500; }
 
-  .or-github { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--rule); font-size: 15px; color: var(--ink-faded); }
-  .or-github a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: color 0.2s; }
+  .or-github {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--rule);
+    font-size: 15px;
+    color: var(--ink-faded);
+  }
+  .or-github a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
   .or-github a:hover { color: var(--accent); }
 
-  footer { padding: 100px 0 80px; }
-  footer p { font-size: 15px; color: var(--ink-soft); max-width: 560px; margin-bottom: 16px; }
-  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: color 0.2s; }
-  footer a:hover { color: var(--accent); }
-  .footer-meta { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--rule); font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--ink-faded); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.9s ease, transform 0.9s ease; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 640px) {
-    .wrap, .wide { padding: 0 24px; }
-    header.hero { padding: 90px 0 80px; }
-    section { padding: 80px 0; }
-    .grid { grid-template-columns: 1fr; }
-    .step { grid-template-columns: 1fr; gap: 8px; }
-    body { font-size: 17px; }
+  .form-section-divider {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px dashed var(--rule);
   }
 
-  ::selection { background: var(--accent); color: var(--paper); }
+  /* ---- Footer ---- */
+  footer { padding: 100px 0 80px; }
+  footer p { font-size: 15px; color: var(--ink-soft); max-width: 560px; margin-bottom: 16px; }
+  footer a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--accent); }
+  .footer-meta {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faded);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ---- Reveal animation ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .wrap, .wide { padding: 0 24px; }
+    .top-bar { padding: 0 16px; height: 46px; gap: 8px; }
+    .top-bar-logo { font-size: 14px; }
+    .nav-link { font-size: 10px; padding: 6px 10px; }
+    .lang-switch button { font-size: 10px; padding: 3px 7px; }
+    .theme-toggle { font-size: 10px; padding: 3px 7px; }
+    header.hero { padding: 60px 0 50px; }
+    section { padding: 80px 0; }
+    .grid { grid-template-columns: 1fr; }
+    .wanted-grid { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 1fr; gap: 8px; }
+    body { font-size: 17px; }
+    .graph-container { height: 400px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow reveal">
-      <span>Liminal Vocab · April 2026</span>
-      <div class="header-controls">
-        <div class="lang-switch">
-          <button data-lang="en" class="active">EN</button>
-          <button data-lang="de">DE</button>
+<!-- ======== TOP NAV BAR ======== -->
+<nav class="top-bar">
+  <a class="top-bar-logo" onclick="navigate('explore')">Liminal Vocab</a>
+  <div class="top-bar-nav">
+    <button class="nav-link active" data-page="explore" data-i18n="nav_explore" onclick="navigate('explore')">Explore</button>
+    <button class="nav-link" data-page="about" data-i18n="nav_about" onclick="navigate('about')">About</button>
+    <button class="nav-link" data-page="contribute" data-i18n="nav_contribute" onclick="navigate('contribute')">Contribute</button>
+  </div>
+  <div class="top-bar-controls">
+    <div class="lang-switch">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="de">DE</button>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+  </div>
+</nav>
+
+<!-- ======== PAGE: EXPLORE ======== -->
+<div id="page-explore">
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span>Liminal Vocab &middot; April 2026</span></div>
+      <h1 class="reveal" data-i18n="hero_title"></h1>
+      <p class="lede reveal" data-i18n="hero_lede"></p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wide">
+      <div class="view-toggle reveal">
+        <button class="view-btn active" id="viewCardsBtn" data-i18n="view_cards" onclick="switchView('cards')">Cards</button>
+        <button class="view-btn" id="viewGraphBtn" data-i18n="view_graph" onclick="switchView('graph')">Graph</button>
+      </div>
+
+      <div id="cardsView">
+        <div class="grid reveal" id="grid"></div>
+      </div>
+
+      <div id="graphView" style="display:none">
+        <div class="graph-container" id="graphContainer">
+          <div class="graph-tooltip" id="graphTooltip">
+            <div class="graph-tooltip-type" id="graphTooltipType"></div>
+            <div id="graphTooltipLabel"></div>
+          </div>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
       </div>
     </div>
-    <h1 class="reveal" data-i18n="hero_title"></h1>
-    <p class="lede reveal" data-i18n="hero_lede"></p>
-  </div>
-</header>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-label reveal" data-i18n="situation_label"></div>
-    <h2 class="reveal" data-i18n="situation_title"></h2>
-    <p class="reveal" data-i18n="situation_p1"></p>
-    <p class="reveal" data-i18n="situation_p2"></p>
-    <div class="pull reveal">
-      <span data-i18n="situation_quote"></span>
-      <cite>Kinsey Carlson, <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont" style="color:inherit">"Everything's changing and we don't have the words"</a></cite>
-    </div>
-    <p class="reveal" data-i18n="situation_p3"></p>
-  </div>
-</section>
+  <section>
+    <div class="wide">
+      <div class="section-label reveal" data-i18n="gaps_label"></div>
+      <h2 class="reveal" data-i18n="gaps_title"></h2>
+      <div class="wanted-grid reveal" id="wantedGrid"></div>
 
-<section>
-  <div class="wide">
-    <div class="section-label reveal" data-i18n="proposal_label"></div>
-    <h2 class="reveal" data-i18n="proposal_title"></h2>
-    <div class="explorer-intro reveal">
-      <p data-i18n="proposal_intro"></p>
+      <div class="reveal">
+        <h3 style="font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 48;font-weight:420;font-size:20px;margin-bottom:20px;letter-spacing:-0.01em" data-i18n="gaps_form_title"></h3>
+        <form class="submit-form" id="wantedFormExplore">
+          <div class="form-group">
+            <label data-i18n="wanted_desc_label"></label>
+            <textarea name="description" required data-i18n-placeholder="wanted_desc_placeholder"></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="wanted_tags_label"></label>
+            <input type="text" name="tags" data-i18n-placeholder="wanted_tags_placeholder">
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_name_label"></label>
+            <input type="text" name="submitter_name" data-i18n-placeholder="form_name_placeholder">
+          </div>
+          <button type="submit" class="submit-btn" data-i18n="gaps_submit_btn"></button>
+          <div class="form-result" id="wantedFormExploreResult"></div>
+        </form>
+      </div>
     </div>
-    <div class="grid reveal" id="grid"></div>
-    <p class="explorer-note reveal" data-i18n="proposal_note"></p>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-label reveal" data-i18n="method_label"></div>
-    <h2 class="reveal" data-i18n="method_title"></h2>
-    <p class="reveal" data-i18n="method_intro"></p>
-    <div class="method-steps">
-      <div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3 data-i18n="method_01_title"></h3><p data-i18n="method_01_text"></p></div></div>
-      <div class="step reveal"><div class="step-num">02</div><div class="step-body"><h3 data-i18n="method_02_title"></h3><p data-i18n="method_02_text"></p></div></div>
-      <div class="step reveal"><div class="step-num">03</div><div class="step-body"><h3 data-i18n="method_03_title"></h3><p data-i18n="method_03_text"></p></div></div>
-      <div class="step reveal"><div class="step-num">04</div><div class="step-body"><h3 data-i18n="method_04_title"></h3><p data-i18n="method_04_text"></p></div></div>
-    </div>
-  </div>
-</section>
+</div>
 
-<section>
-  <div class="wrap">
-    <div class="section-label reveal" data-i18n="principles_label"></div>
-    <h2 class="reveal" data-i18n="principles_title"></h2>
-    <div class="principles">
-      <div class="principle reveal"><div class="principle-num">01</div><div class="principle-text" data-i18n="principle_01"></div></div>
-      <div class="principle reveal"><div class="principle-num">02</div><div class="principle-text" data-i18n="principle_02"></div></div>
-      <div class="principle reveal"><div class="principle-num">03</div><div class="principle-text" data-i18n="principle_03"></div></div>
-      <div class="principle reveal"><div class="principle-num">04</div><div class="principle-text" data-i18n="principle_04"></div></div>
-      <div class="principle reveal"><div class="principle-num">05</div><div class="principle-text" data-i18n="principle_05"></div></div>
-      <div class="principle reveal"><div class="principle-num">06</div><div class="principle-text" data-i18n="principle_06"></div></div>
-    </div>
-  </div>
-</section>
+<!-- ======== PAGE: ABOUT ======== -->
+<div id="page-about" style="display:none">
 
-<section id="submit">
-  <div class="wrap">
-    <div class="section-label reveal" data-i18n="submit_label"></div>
-    <h2 class="reveal" data-i18n="submit_title"></h2>
-    <div class="submit-intro reveal">
-      <p data-i18n="submit_intro_1"></p>
-      <p data-i18n="submit_intro_2"></p>
+  <section>
+    <div class="wrap">
+      <div class="section-label reveal" data-i18n="situation_label"></div>
+      <h2 class="reveal" data-i18n="situation_title"></h2>
+      <p class="reveal" data-i18n="situation_p1"></p>
+      <p class="reveal" data-i18n="situation_p2"></p>
+      <div class="pull reveal">
+        <span data-i18n="situation_quote"></span>
+        <cite>Kinsey Carlson, <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont" style="color:inherit">"Everything's changing and we don't have the words"</a></cite>
+      </div>
+      <p class="reveal" data-i18n="situation_p3"></p>
     </div>
-    <form class="submit-form reveal" id="proposalForm">
-      <div class="form-group">
-        <label data-i18n="form_term_label"></label>
-        <input type="text" name="term" required data-i18n-placeholder="form_term_placeholder">
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-label reveal" data-i18n="method_label"></div>
+      <h2 class="reveal" data-i18n="method_title"></h2>
+      <p class="reveal" data-i18n="method_intro"></p>
+      <div class="method-steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3 data-i18n="method_01_title"></h3><p data-i18n="method_01_text"></p></div></div>
+        <div class="step reveal"><div class="step-num">02</div><div class="step-body"><h3 data-i18n="method_02_title"></h3><p data-i18n="method_02_text"></p></div></div>
+        <div class="step reveal"><div class="step-num">03</div><div class="step-body"><h3 data-i18n="method_03_title"></h3><p data-i18n="method_03_text"></p></div></div>
+        <div class="step reveal"><div class="step-num">04</div><div class="step-body"><h3 data-i18n="method_04_title"></h3><p data-i18n="method_04_text"></p></div></div>
       </div>
-      <div class="form-group">
-        <label data-i18n="form_community_label"></label>
-        <span class="hint" data-i18n="form_community_hint"></span>
-        <input type="text" name="community" required data-i18n-placeholder="form_community_placeholder">
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-label reveal" data-i18n="principles_label"></div>
+      <h2 class="reveal" data-i18n="principles_title"></h2>
+      <div class="principles">
+        <div class="principle reveal"><div class="principle-num">01</div><div class="principle-text" data-i18n="principle_01"></div></div>
+        <div class="principle reveal"><div class="principle-num">02</div><div class="principle-text" data-i18n="principle_02"></div></div>
+        <div class="principle reveal"><div class="principle-num">03</div><div class="principle-text" data-i18n="principle_03"></div></div>
+        <div class="principle reveal"><div class="principle-num">04</div><div class="principle-text" data-i18n="principle_04"></div></div>
+        <div class="principle reveal"><div class="principle-num">05</div><div class="principle-text" data-i18n="principle_05"></div></div>
+        <div class="principle reveal"><div class="principle-num">06</div><div class="principle-text" data-i18n="principle_06"></div></div>
       </div>
-      <div class="form-group">
-        <label data-i18n="form_visible_label"></label>
-        <span class="hint" data-i18n="form_visible_hint"></span>
-        <textarea name="makes_visible" required data-i18n-placeholder="form_visible_placeholder"></textarea>
+    </div>
+  </section>
+
+  <footer id="credit">
+    <div class="wrap">
+      <p data-i18n-html="footer_credit"></p>
+      <p data-i18n="footer_early"></p>
+      <p>Source: <a href="https://github.com/tricksal/liminal-vocab">GitHub</a></p>
+      <div class="footer-meta">
+        <span>STATUS &middot; V 0.3 &middot; OPEN FOR PROPOSALS</span>
+        <span>APRIL 2026</span>
       </div>
-      <div class="form-group">
-        <label data-i18n="form_pattern_label"></label>
-        <span class="hint" data-i18n="form_pattern_hint"></span>
-        <input type="text" name="pattern" data-i18n-placeholder="form_pattern_placeholder">
+    </div>
+  </footer>
+
+</div>
+
+<!-- ======== PAGE: CONTRIBUTE ======== -->
+<div id="page-contribute" style="display:none">
+
+  <section>
+    <div class="wrap">
+      <div class="section-label reveal" data-i18n="submit_label"></div>
+      <h2 class="reveal" data-i18n="submit_title"></h2>
+      <div class="submit-intro reveal">
+        <p data-i18n="submit_intro_1"></p>
+        <p data-i18n="submit_intro_2"></p>
       </div>
-      <div class="form-group">
-        <label data-i18n="form_citation_label"></label>
-        <span class="hint" data-i18n="form_citation_hint"></span>
-        <textarea name="citation" required data-i18n-placeholder="form_citation_placeholder"></textarea>
+      <form class="submit-form reveal" id="proposalForm">
+        <div class="form-group">
+          <label data-i18n="form_term_label"></label>
+          <input type="text" name="term" required data-i18n-placeholder="form_term_placeholder">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_community_label"></label>
+          <span class="hint" data-i18n="form_community_hint"></span>
+          <input type="text" name="community" required data-i18n-placeholder="form_community_placeholder">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_visible_label"></label>
+          <span class="hint" data-i18n="form_visible_hint"></span>
+          <textarea name="makes_visible" required data-i18n-placeholder="form_visible_placeholder"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_pattern_label"></label>
+          <span class="hint" data-i18n="form_pattern_hint"></span>
+          <input type="text" name="pattern" data-i18n-placeholder="form_pattern_placeholder">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_citation_label"></label>
+          <span class="hint" data-i18n="form_citation_hint"></span>
+          <textarea name="citation" required data-i18n-placeholder="form_citation_placeholder"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_context_label"></label>
+          <span class="hint" data-i18n="form_context_hint"></span>
+          <textarea name="context" data-i18n-placeholder="form_context_placeholder"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_name_label"></label>
+          <span class="hint" data-i18n="form_name_hint"></span>
+          <input type="text" name="submitter_name" data-i18n-placeholder="form_name_placeholder">
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="form_submit_btn"></button>
+        <div class="form-result" id="formResult"></div>
+      </form>
+
+      <div class="form-section-divider">
+        <div class="section-label reveal" data-i18n="wanted_submit_label"></div>
+        <h2 class="reveal" data-i18n="wanted_submit_title"></h2>
+        <p class="reveal" data-i18n="wanted_submit_intro"></p>
+        <form class="submit-form reveal" id="wantedFormContribute">
+          <div class="form-group">
+            <label data-i18n="wanted_desc_label"></label>
+            <span class="hint" data-i18n="wanted_desc_hint"></span>
+            <textarea name="description" required data-i18n-placeholder="wanted_desc_placeholder"></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="wanted_tags_label"></label>
+            <span class="hint" data-i18n="wanted_tags_hint"></span>
+            <input type="text" name="tags" data-i18n-placeholder="wanted_tags_placeholder">
+          </div>
+          <div class="form-group">
+            <label data-i18n="form_name_label"></label>
+            <span class="hint" data-i18n="form_name_hint"></span>
+            <input type="text" name="submitter_name" data-i18n-placeholder="form_name_placeholder">
+          </div>
+          <button type="submit" class="submit-btn" data-i18n="wanted_submit_btn"></button>
+          <div class="form-result" id="wantedFormContributeResult"></div>
+        </form>
       </div>
-      <div class="form-group">
-        <label data-i18n="form_context_label"></label>
-        <span class="hint" data-i18n="form_context_hint"></span>
-        <textarea name="context" data-i18n-placeholder="form_context_placeholder"></textarea>
-      </div>
-      <div class="form-group">
-        <label data-i18n="form_name_label"></label>
-        <span class="hint" data-i18n="form_name_hint"></span>
-        <input type="text" name="submitter_name" data-i18n-placeholder="form_name_placeholder">
-      </div>
-      <button type="submit" class="submit-btn" data-i18n="form_submit_btn"></button>
-      <div class="form-result" id="formResult"></div>
+
       <div class="or-github reveal" data-i18n-html="form_or_github"></div>
-    </form>
-  </div>
-</section>
-
-<footer id="credit">
-  <div class="wrap">
-    <p data-i18n-html="footer_credit"></p>
-    <p data-i18n="footer_early"></p>
-    <p>Source: <a href="https://github.com/tricksal/liminal-vocab">GitHub</a></p>
-    <div class="footer-meta">
-      <span>STATUS · V 0.2 · OPEN FOR PROPOSALS</span>
-      <span>APRIL 2026</span>
     </div>
-  </div>
-</footer>
+  </section>
 
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-// ── i18n ──────────────────────────────────────────────────
+// ================================================================
+// 1. i18n
+// ================================================================
 
 const UI = {
   en: {
+    nav_explore: 'Explore',
+    nav_about: 'About',
+    nav_contribute: 'Contribute',
     hero_title: 'Everything\'s changing<br>and we don\'t have<br>the <em>words</em>.',
     hero_lede: 'An open, curated, multilingual cartography of the new vocabulary emerging at the edges of culture, where communities of practice are already naming things the rest of us can\'t yet see.',
+    view_cards: 'Cards',
+    view_graph: 'Graph',
+    gaps_label: 'The gaps',
+    gaps_title: 'Sometimes the word doesn\'t exist yet.',
+    gaps_form_title: 'Describe a gap',
+    gaps_submit_btn: 'Submit Gap',
+    maturity_seedling: 'seedling',
+    maturity_growing: 'growing',
+    maturity_established: 'established',
+    no_equivalent: '\u25CB no {lang} equivalent',
+    edge_displaces: 'DISPLACES',
+    edge_pattern: 'PATTERN',
+    edge_related: 'RELATED',
     situation_label: 'The situation',
     situation_title: 'We are living through a liminal time, and our language is behind.',
     situation_p1: 'The old vocabulary (<em>democracy, freedom, community, work</em>) has been hollowed out through overuse and political corruption. The new vocabulary that could describe what\'s actually happening doesn\'t exist yet. We reach for words that aren\'t there.',
     situation_p2: 'This is not a metaphor. Cognitive scientists like Lera Boroditsky have shown that when we lack language for a phenomenon, we don\'t just struggle to communicate it. We struggle to <em>think</em> about it at the most basic level. To remember it. To assign responsibility for it.',
     situation_quote: 'New realities are emerging, but they\'re still insubstantial. The old words are corrupted, and the new words don\'t exist yet. We\'re caught in between.',
     situation_p3: 'But Carlson\'s essay also points to where the new language is already being made: at the edges, in <em>communities of practice</em>. Groups of people living inside arrangements so new that they have no choice but to invent the words for them.',
-    proposal_label: 'The proposal',
-    proposal_title: 'Map the edges. Document what\'s being named. Make it <em>legible</em> to everyone else.',
-    proposal_intro: 'A public repository of emerging terms, each one documented not as a dictionary entry but as a small act of observation: where it comes from, what it makes visible, and what kind of shift it performs. No fixed categories. The patterns emerge from the terms themselves.',
-    proposal_note: 'These are illustrative examples, not the final corpus. The real work begins when a community submits the term they can\'t find anywhere else.',
     method_label: 'The method',
     method_title: 'The form is part of the argument.',
     method_intro: 'The repository borrows its workflow from software development (pull requests, version history, public review) and applies it to humanistic work. That\'s deliberate. A community of practice (coders) developed a vocabulary for collaborative knowledge work that the humanities never adopted. Using it here is itself an act of translation across edges.',
@@ -409,7 +916,7 @@ const UI = {
     principle_04: 'The <strong>in-between</strong> is material, not waste.',
     principle_05: '<strong>Transparency</strong> before consensus.',
     principle_06: '<strong>Observe</strong>, don\'t steer.',
-    submit_label: 'Contribute',
+    submit_label: 'Submit a term',
     submit_title: 'You know a word that doesn\'t exist in mainstream language yet? <em>Submit it.</em>',
     submit_intro_1: 'This cartography grows through observation, not invention. If you\'ve encountered a term in a community of practice that names something previously invisible, something the rest of us don\'t have words for yet, propose it here.',
     submit_intro_2: 'Every submission requires a <strong>concrete citation from actual usage</strong>. Not paraphrased, not invented. If you can\'t point to someone using the term in practice, it\'s not yet what we study.',
@@ -434,86 +941,115 @@ const UI = {
     form_name_hint: 'Optional. Will be credited on the proposal.',
     form_name_placeholder: 'Your name (optional)',
     form_submit_btn: 'Submit Term Proposal',
-    form_or_github: 'Or, if you prefer: <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=term-proposal.yml">submit directly as a GitHub Issue</a>.',
+    form_or_github: 'Or, if you prefer: <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=term-proposal.yml">submit a term as a GitHub Issue</a> or <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=wanted-term.yml">describe a gap as a GitHub Issue</a>.',
+    wanted_submit_label: 'Submit a gap',
+    wanted_submit_title: 'There\'s a phenomenon you can\'t name? <em>Describe it.</em>',
+    wanted_submit_intro: 'If you\'ve noticed something that doesn\'t have a word yet, describe the gap. Someone else may know the term, or it may become a prompt for coining one.',
+    wanted_desc_label: 'Description <span class="required">*</span>',
+    wanted_desc_hint: 'Describe the phenomenon or experience that lacks a name.',
+    wanted_desc_placeholder: 'Describe the thing you can\'t name yet. What does it feel like? Where do you encounter it?',
+    wanted_tags_label: 'Tags',
+    wanted_tags_hint: 'Optional. Comma-separated tags to help others find this gap.',
+    wanted_tags_placeholder: 'e.g., work, identity, technology, community',
+    wanted_submit_btn: 'Submit Gap',
+    wanted_success: 'Thank you. Your gap description has been submitted. The community will see it and may be able to help name it.',
+    wanted_error: 'Something went wrong: {err}. Please try again or submit via GitHub.',
     footer_credit: 'This project is a direct response to Kinsey Carlson\'s essay <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont">"Everything\'s changing and we don\'t have the words"</a>, published on <em>In the Making</em> in April 2026. It tries to turn her closing question, <em>which communities of practice are you paying attention to?</em>, into an actual method.',
     footer_early: 'It is early. It is open to collaborators, critics, and especially to people already living inside arrangements that don\'t have names yet.',
-    no_equivalent: '\u25CB no {lang} equivalent',
-    edge_displaces: 'DISPLACES',
-    edge_pattern: 'PATTERN',
-    edge_related: 'RELATED',
     submit_success: 'Thank you. Your proposal for <strong>{term}</strong> has been submitted as <a href="{url}" target="_blank">Issue #{num}</a> on GitHub. The editorial team will review it publicly.',
     submit_error: 'Something went wrong: {err}. You can also submit directly via GitHub.',
   },
   de: {
-    hero_title: 'Alles verändert sich<br>und uns fehlen<br>die <em>Worte</em>.',
-    hero_lede: 'Eine offene, kuratierte, mehrsprachige Kartographie des neuen Vokabulars, das an den Rändern der Kultur entsteht, wo Communities of Practice bereits Dinge benennen, die der Rest von uns noch nicht sehen kann.',
+    nav_explore: 'Erkunden',
+    nav_about: '\u00DCber',
+    nav_contribute: 'Beitragen',
+    hero_title: 'Alles ver\u00e4ndert sich<br>und uns fehlen<br>die <em>Worte</em>.',
+    hero_lede: 'Eine offene, kuratierte, mehrsprachige Kartographie des neuen Vokabulars, das an den R\u00e4ndern der Kultur entsteht, wo Communities of Practice bereits Dinge benennen, die der Rest von uns noch nicht sehen kann.',
+    view_cards: 'Karten',
+    view_graph: 'Graph',
+    gaps_label: 'Die L\u00fccken',
+    gaps_title: 'Manchmal existiert das Wort noch nicht.',
+    gaps_form_title: 'Eine L\u00fccke beschreiben',
+    gaps_submit_btn: 'L\u00fccke einreichen',
+    maturity_seedling: 'Keimling',
+    maturity_growing: 'wachsend',
+    maturity_established: 'etabliert',
+    no_equivalent: '\u25CB kein {lang} \u00c4quivalent',
+    edge_displaces: 'VERDR\u00c4NGT',
+    edge_pattern: 'MUSTER',
+    edge_related: 'VERWANDT',
     situation_label: 'Die Ausgangslage',
     situation_title: 'Wir leben in einer liminalen Zeit, und unsere Sprache hinkt hinterher.',
-    situation_p1: 'Das alte Vokabular (<em>Demokratie, Freiheit, Gemeinschaft, Arbeit</em>) wurde durch Übergebrauch und politische Vereinnahmung ausgehöhlt. Das neue Vokabular, das beschreiben könnte, was tatsächlich passiert, existiert noch nicht. Wir greifen nach Worten, die nicht da sind.',
-    situation_p2: 'Das ist keine Metapher. Kognitionswissenschaftlerinnen wie Lera Boroditsky haben gezeigt: Wenn uns Sprache für ein Phänomen fehlt, können wir es nicht nur schwer kommunizieren. Wir können kaum darüber <em>nachdenken</em>. Es nicht erinnern. Keine Verantwortung dafür zuweisen.',
-    situation_quote: 'Neue Realitäten entstehen, aber sie sind noch substanzlos. Die alten Worte sind korrumpiert, die neuen existieren noch nicht. Wir stecken dazwischen.',
-    situation_p3: 'Aber Carlsons Essay zeigt auch, wo die neue Sprache bereits entsteht: an den Rändern, in <em>Communities of Practice</em>. Gruppen von Menschen, die in so neuen Verhältnissen leben, dass ihnen nichts anderes übrig bleibt, als die Worte dafür zu erfinden.',
-    proposal_label: 'Der Vorschlag',
-    proposal_title: 'Die Ränder kartieren. Dokumentieren, was benannt wird. Es für alle anderen <em>lesbar</em> machen.',
-    proposal_intro: 'Ein öffentliches Archiv entstehender Begriffe. Jeder einzelne dokumentiert nicht als Wörterbucheintrag, sondern als kleine Beobachtung: woher er kommt, was er sichtbar macht, welche Art von Verschiebung er vollzieht. Keine festen Kategorien. Die Muster entstehen aus den Begriffen selbst.',
-    proposal_note: 'Dies sind illustrative Beispiele, nicht der endgültige Korpus. Die eigentliche Arbeit beginnt, wenn eine Community den Begriff einreicht, den sie nirgendwo anders finden kann.',
+    situation_p1: 'Das alte Vokabular (<em>Demokratie, Freiheit, Gemeinschaft, Arbeit</em>) wurde durch \u00dcbergebrauch und politische Vereinnahmung ausgeh\u00f6hlt. Das neue Vokabular, das beschreiben k\u00f6nnte, was tats\u00e4chlich passiert, existiert noch nicht. Wir greifen nach Worten, die nicht da sind.',
+    situation_p2: 'Das ist keine Metapher. Kognitionswissenschaftlerinnen wie Lera Boroditsky haben gezeigt: Wenn uns Sprache f\u00fcr ein Ph\u00e4nomen fehlt, k\u00f6nnen wir es nicht nur schwer kommunizieren. Wir k\u00f6nnen kaum dar\u00fcber <em>nachdenken</em>. Es nicht erinnern. Keine Verantwortung daf\u00fcr zuweisen.',
+    situation_quote: 'Neue Realit\u00e4ten entstehen, aber sie sind noch substanzlos. Die alten Worte sind korrumpiert, die neuen existieren noch nicht. Wir stecken dazwischen.',
+    situation_p3: 'Aber Carlsons Essay zeigt auch, wo die neue Sprache bereits entsteht: an den R\u00e4ndern, in <em>Communities of Practice</em>. Gruppen von Menschen, die in so neuen Verh\u00e4ltnissen leben, dass ihnen nichts anderes \u00fcbrig bleibt, als die Worte daf\u00fcr zu erfinden.',
     method_label: 'Die Methode',
     method_title: 'Die Form ist Teil des Arguments.',
-    method_intro: 'Das Repository übernimmt seinen Workflow aus der Softwareentwicklung (Pull Requests, Versionsgeschichte, öffentliches Review) und wendet ihn auf geisteswissenschaftliche Arbeit an. Das ist Absicht. Eine Community of Practice (Entwickler:innen) hat ein Vokabular für kollaborative Wissensarbeit entwickelt, das die Geisteswissenschaften nie übernommen haben. Es hier zu nutzen ist selbst ein Akt der Übersetzung über Grenzen hinweg.',
+    method_intro: 'Das Repository \u00fcbernimmt seinen Workflow aus der Softwareentwicklung (Pull Requests, Versionsgeschichte, \u00f6ffentliches Review) und wendet ihn auf geisteswissenschaftliche Arbeit an. Das ist Absicht. Eine Community of Practice (Entwickler:innen) hat ein Vokabular f\u00fcr kollaborative Wissensarbeit entwickelt, das die Geisteswissenschaften nie \u00fcbernommen haben. Es hier zu nutzen ist selbst ein Akt der \u00dcbersetzung \u00fcber Grenzen hinweg.',
     method_01_title: 'Nur menschliche Einreichungen',
-    method_01_text: 'Begriffe werden von Menschen vorgeschlagen, die ihnen in gelebter Praxis begegnet sind, mit einem konkreten Beleg. Keine maschinell erzeugten Einträge. Nicht aus Qualitätsgründen, sondern weil das Projekt Worte untersucht, die aus Erfahrung entstehen.',
-    method_02_title: 'Öffentliches Review',
+    method_01_text: 'Begriffe werden von Menschen vorgeschlagen, die ihnen in gelebter Praxis begegnet sind, mit einem konkreten Beleg. Keine maschinell erzeugten Eintr\u00e4ge. Nicht aus Qualit\u00e4tsgr\u00fcnden, sondern weil das Projekt Worte untersucht, die aus Erfahrung entstehen.',
+    method_02_title: '\u00d6ffentliches Review',
     method_02_text: 'Jeder Vorschlag ist ein Pull Request. Diskussion, redaktionelle Entscheidungen und auch Ablehnungen bleiben sichtbar. Die Schwelle zwischen "noch nicht reif" und "akzeptiert" ist selbst Teil der Kartographie.',
     method_03_title: 'Menschlich verfasste Analyse',
-    method_03_text: 'KI kann bei Recherche, Übersetzung und Mustererkennung helfen. Aber der interpretative Essay zu jedem Eintrag wird immer von einem menschlichen Redakteur geschrieben und signiert. Die Maschine destilliert; der Mensch urteilt.',
+    method_03_text: 'KI kann bei Recherche, \u00dcbersetzung und Mustererkennung helfen. Aber der interpretative Essay zu jedem Eintrag wird immer von einem menschlichen Redakteur geschrieben und signiert. Die Maschine destilliert; der Mensch urteilt.',
     method_04_title: 'Offen, mehrsprachig, navigierbar',
-    method_04_text: 'Strukturierte Metadaten machen das Archiv filterbar nach Community, Zeitraum oder Muster, sodass Leser:innen etwa alle Begriffe sehen können, die ein falsches Binär in ein Spektrum verwandeln. Unübersetzbarkeit wird als Material behandelt, nicht als Lücke.',
-    principles_label: 'Leitsätze',
-    principles_title: 'Sechs Sätze, zu denen man zurückkehrt, wenn man zweifelt.',
+    method_04_text: 'Strukturierte Metadaten machen das Archiv filterbar nach Community, Zeitraum oder Muster, sodass Leser:innen etwa alle Begriffe sehen k\u00f6nnen, die ein falsches Bin\u00e4r in ein Spektrum verwandeln. Un\u00fcbersetzbarkeit wird als Material behandelt, nicht als L\u00fccke.',
+    principles_label: 'Leits\u00e4tze',
+    principles_title: 'Sechs S\u00e4tze, zu denen man zur\u00fcckkehrt, wenn man zweifelt.',
     principle_01: 'Die <strong>Form</strong> ist Teil der These.',
     principle_02: '<strong>Belege</strong> schlagen Behauptungen. Kein Eintrag ohne realen Gebrauch.',
     principle_03: 'KI <strong>destilliert</strong>, Menschen deuten.',
     principle_04: 'Das <strong>Dazwischen</strong> ist Material, kein Ausschuss.',
     principle_05: '<strong>Transparenz</strong> vor Konsens.',
     principle_06: '<strong>Beobachten</strong>, nicht lenken.',
-    submit_label: 'Beitragen',
+    submit_label: 'Begriff einreichen',
     submit_title: 'Du kennst ein Wort, das in der Allgemeinsprache noch nicht existiert? <em>Reiche es ein.</em>',
-    submit_intro_1: 'Diese Kartographie wächst durch Beobachtung, nicht durch Erfindung. Wenn dir ein Begriff begegnet ist, der etwas benennt, das zuvor unsichtbar war, etwas, wofür der Rest von uns noch keine Worte hat, dann schlage ihn hier vor.',
-    submit_intro_2: 'Jede Einreichung erfordert einen <strong>konkreten Beleg aus tatsächlichem Gebrauch</strong>. Nicht paraphrasiert, nicht erfunden. Wer keinen konkreten Gebrauch belegen kann, trägt nichts bei, was das Projekt untersuchen will.',
+    submit_intro_1: 'Diese Kartographie w\u00e4chst durch Beobachtung, nicht durch Erfindung. Wenn dir ein Begriff begegnet ist, der etwas benennt, das zuvor unsichtbar war, etwas, wof\u00fcr der Rest von uns noch keine Worte hat, dann schlage ihn hier vor.',
+    submit_intro_2: 'Jede Einreichung erfordert einen <strong>konkreten Beleg aus tats\u00e4chlichem Gebrauch</strong>. Nicht paraphrasiert, nicht erfunden. Wer keinen konkreten Gebrauch belegen kann, tr\u00e4gt nichts bei, was das Projekt untersuchen will.',
     form_term_label: 'Begriff <span class="required">*</span>',
     form_term_placeholder: 'z.B. Verschlimmbessern, Commoning, Rejection Sensitivity',
     form_community_label: 'Woher stammt er? <span class="required">*</span>',
-    form_community_hint: 'Welche Community, Praxis oder welcher Kontext hat diesen Begriff geprägt?',
+    form_community_hint: 'Welche Community, Praxis oder welcher Kontext hat diesen Begriff gepr\u00e4gt?',
     form_community_placeholder: 'z.B. ADHS-Community, Degrowth-Bewegung, Open-Source-Entwickler:innen',
     form_visible_label: 'Was macht dieser Begriff sichtbar? <span class="required">*</span>',
-    form_visible_hint: 'Welches Phänomen benennt dieser Begriff, das zuvor unbenannt war?',
+    form_visible_hint: 'Welches Ph\u00e4nomen benennt dieser Begriff, das zuvor unbenannt war?',
     form_visible_placeholder: 'Beschreibe, was vorher nicht sagbar oder klar denkbar war.',
     form_pattern_label: 'Welche Art von Verschiebung vollzieht er?',
-    form_pattern_hint: 'Optional. Wie verändert er unser Denken? z.B. "macht unsichtbare Arbeit sichtbar", "verwandelt ein Binär in ein Spektrum"',
+    form_pattern_hint: 'Optional. Wie ver\u00e4ndert er unser Denken? z.B. "macht unsichtbare Arbeit sichtbar", "verwandelt ein Bin\u00e4r in ein Spektrum"',
     form_pattern_placeholder: 'In eigenen Worten. Es gibt hier keine festen Kategorien.',
-    form_citation_label: 'Beleg aus tatsächlichem Gebrauch <span class="required">*</span>',
+    form_citation_label: 'Beleg aus tats\u00e4chlichem Gebrauch <span class="required">*</span>',
     form_citation_hint: 'Ein konkretes Zitat, das den Begriff im Gebrauch zeigt, mit Quelle.',
-    form_citation_placeholder: '"Zitat aus tatsächlichem Gebrauch" - Quelle (URL, Publikation, Kontext)',
-    form_context_label: 'Zusätzlicher Kontext',
-    form_context_hint: 'Optional: Wann ist der Begriff entstanden? Welchen älteren Begriff löst er ab?',
-    form_context_placeholder: 'z.B. Entstanden um 2024. Löst das "Faulheit"-Framing ab. Verwandt mit...',
+    form_citation_placeholder: '"Zitat aus tats\u00e4chlichem Gebrauch" - Quelle (URL, Publikation, Kontext)',
+    form_context_label: 'Zus\u00e4tzlicher Kontext',
+    form_context_hint: 'Optional: Wann ist der Begriff entstanden? Welchen \u00e4lteren Begriff l\u00f6st er ab?',
+    form_context_placeholder: 'z.B. Entstanden um 2024. L\u00f6st das "Faulheit"-Framing ab. Verwandt mit...',
     form_name_label: 'Dein Name',
     form_name_hint: 'Optional. Wird beim Vorschlag genannt.',
     form_name_placeholder: 'Dein Name (optional)',
     form_submit_btn: 'Vorschlag einreichen',
-    form_or_github: 'Oder, wenn dir lieber: <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=term-proposal.yml">direkt als GitHub Issue einreichen</a>.',
-    footer_credit: 'Dieses Projekt ist eine direkte Antwort auf Kinsey Carlsons Essay <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont">"Everything\'s changing and we don\'t have the words"</a>, erschienen auf <em>In the Making</em> im April 2026. Es versucht, ihre Schlussfrage, <em>welche Communities of Practice beobachtest du?</em>, in eine tatsächliche Methode zu überführen.',
-    footer_early: 'Es ist früh. Es ist offen für Mitwirkende, Kritiker:innen, und besonders für Menschen, die bereits in Verhältnissen leben, die noch keine Namen haben.',
-    no_equivalent: '\u25CB kein {lang} Äquivalent',
-    edge_displaces: 'VERDRÄNGT',
-    edge_pattern: 'MUSTER',
-    edge_related: 'VERWANDT',
-    submit_success: 'Danke. Dein Vorschlag für <strong>{term}</strong> wurde als <a href="{url}" target="_blank">Issue #{num}</a> auf GitHub eingereicht. Die Redaktion wird ihn öffentlich besprechen.',
-    submit_error: 'Etwas ist schiefgelaufen: {err}. Du kannst auch direkt über GitHub einreichen.',
+    form_or_github: 'Oder, wenn dir lieber: <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=term-proposal.yml">einen Begriff als GitHub Issue einreichen</a> oder <a href="https://github.com/tricksal/liminal-vocab/issues/new?template=wanted-term.yml">eine L\u00fccke als GitHub Issue beschreiben</a>.',
+    wanted_submit_label: 'L\u00fccke einreichen',
+    wanted_submit_title: 'Es gibt ein Ph\u00e4nomen, das du nicht benennen kannst? <em>Beschreibe es.</em>',
+    wanted_submit_intro: 'Wenn dir etwas aufgefallen ist, wof\u00fcr es noch kein Wort gibt, beschreibe die L\u00fccke. Jemand anderes kennt vielleicht den Begriff, oder es wird ein Ansto\u00df, einen zu pr\u00e4gen.',
+    wanted_desc_label: 'Beschreibung <span class="required">*</span>',
+    wanted_desc_hint: 'Beschreibe das Ph\u00e4nomen oder die Erfahrung, f\u00fcr die ein Name fehlt.',
+    wanted_desc_placeholder: 'Beschreibe das, was du noch nicht benennen kannst. Wie f\u00fchlt es sich an? Wo begegnest du ihm?',
+    wanted_tags_label: 'Tags',
+    wanted_tags_hint: 'Optional. Kommagetrennte Tags, damit andere diese L\u00fccke finden k\u00f6nnen.',
+    wanted_tags_placeholder: 'z.B. Arbeit, Identit\u00e4t, Technologie, Gemeinschaft',
+    wanted_submit_btn: 'L\u00fccke einreichen',
+    wanted_success: 'Danke. Deine L\u00fcckenbeschreibung wurde eingereicht. Die Community wird sie sehen und kann vielleicht helfen, sie zu benennen.',
+    wanted_error: 'Etwas ist schiefgelaufen: {err}. Bitte versuche es erneut oder reiche \u00fcber GitHub ein.',
+    footer_credit: 'Dieses Projekt ist eine direkte Antwort auf Kinsey Carlsons Essay <a href="https://open.substack.com/pub/inthemaking/p/everythings-changing-and-we-dont">"Everything\'s changing and we don\'t have the words"</a>, erschienen auf <em>In the Making</em> im April 2026. Es versucht, ihre Schlussfrage, <em>welche Communities of Practice beobachtest du?</em>, in eine tats\u00e4chliche Methode zu \u00fcberf\u00fchren.',
+    footer_early: 'Es ist fr\u00fch. Es ist offen f\u00fcr Mitwirkende, Kritiker:innen, und besonders f\u00fcr Menschen, die bereits in Verh\u00e4ltnissen leben, die noch keine Namen haben.',
+    submit_success: 'Danke. Dein Vorschlag f\u00fcr <strong>{term}</strong> wurde als <a href="{url}" target="_blank">Issue #{num}</a> auf GitHub eingereicht. Die Redaktion wird ihn \u00f6ffentlich besprechen.',
+    submit_error: 'Etwas ist schiefgelaufen: {err}. Du kannst auch direkt \u00fcber GitHub einreichen.',
   },
 };
 
 const LANG_NAMES = { en: 'englisches', de: 'deutsches' };
+const MATURITY_KEYS = { seedling: 'maturity_seedling', growing: 'maturity_growing', established: 'maturity_established' };
 
 let currentLang = localStorage.getItem('lv-lang') || 'en';
 
@@ -523,87 +1059,167 @@ function applyLang() {
   document.documentElement.lang = currentLang;
   localStorage.setItem('lv-lang', currentLang);
 
-  // Update lang switch buttons
-  document.querySelectorAll('.lang-switch button').forEach(b => {
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
     b.classList.toggle('active', b.dataset.lang === currentLang);
   });
 
-  // Apply i18n text
-  document.querySelectorAll('[data-i18n]').forEach(el => {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
     el.innerHTML = t(el.dataset.i18n);
   });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     el.innerHTML = t(el.dataset.i18nHtml);
   });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
     el.placeholder = t(el.dataset.i18nPlaceholder);
   });
 
   loadTerms();
+  loadWanted();
+  if (document.getElementById('graphView').style.display !== 'none') {
+    loadGraph();
+  }
 }
 
-// Language switch
-document.querySelectorAll('.lang-switch button').forEach(btn => {
-  btn.addEventListener('click', () => {
+// ================================================================
+// 2. Navigation
+// ================================================================
+
+function navigate(page) {
+  ['explore', 'about', 'contribute'].forEach(function(p) {
+    document.getElementById('page-' + p).style.display = p === page ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-link').forEach(function(l) {
+    l.classList.toggle('active', l.dataset.page === page);
+  });
+  window.location.hash = page;
+  window.scrollTo(0, 0);
+  initReveals();
+}
+
+function initFromHash() {
+  var hash = window.location.hash.replace('#', '');
+  if (['explore', 'about', 'contribute'].indexOf(hash) !== -1) {
+    navigate(hash);
+  } else {
+    navigate('explore');
+  }
+}
+
+window.addEventListener('hashchange', function() {
+  initFromHash();
+});
+
+// ================================================================
+// 3. Theme toggle
+// ================================================================
+
+var themeBtn = document.getElementById('themeToggle');
+var THEME_LABELS = { light: '\u25D0 Dark', dark: '\u25D1 Light' };
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('lv-theme', theme);
+  themeBtn.textContent = THEME_LABELS[theme];
+  if (document.getElementById('graphView').style.display !== 'none') {
+    loadGraph();
+  }
+}
+
+themeBtn.addEventListener('click', function() {
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+var savedTheme = localStorage.getItem('lv-theme');
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  applyTheme('dark');
+} else {
+  applyTheme('light');
+}
+
+// ================================================================
+// 4. Language switch
+// ================================================================
+
+document.querySelectorAll('.lang-switch button').forEach(function(btn) {
+  btn.addEventListener('click', function() {
     currentLang = btn.dataset.lang;
     applyLang();
   });
 });
 
+// ================================================================
+// 5. Data loading helpers
+// ================================================================
 
-// ── Load terms from API ──────────────────────────────────
+function escapeHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
 
 function buildCardMeta(edges) {
-  const parts = [];
-  for (const edge of edges) {
+  var parts = [];
+  for (var i = 0; i < edges.length; i++) {
+    var edge = edges[i];
     if (edge.direction === 'incoming') continue;
     if (edge.type === 'emerges_from') continue;
-    const label = edge.type === 'displaces' ? t('edge_displaces')
-                : edge.type === 'performs_pattern' ? t('edge_pattern')
-                : edge.type === 'related_to' ? t('edge_related')
-                : edge.type.toUpperCase();
-    const target = edge.target_freetext || (edge.target && edge.target.label) || '';
+    var label = edge.type === 'displaces' ? t('edge_displaces')
+              : edge.type === 'performs_pattern' ? t('edge_pattern')
+              : edge.type === 'related_to' ? t('edge_related')
+              : edge.type.toUpperCase();
+    var target = edge.target_freetext || (edge.target && edge.target.label) || '';
     if (target) parts.push(label + ' \u2192 ' + target);
   }
   return parts.join(' \u00B7 ');
 }
 
 function getCommunityLabel(edges) {
-  const e = edges.find(e => e.type === 'emerges_from' && e.target);
-  return e ? e.target.label : '';
+  for (var i = 0; i < edges.length; i++) {
+    if (edges[i].type === 'emerges_from' && edges[i].target) {
+      return edges[i].target.label;
+    }
+  }
+  return '';
 }
 
-function escapeHtml(s) {
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
-}
+// ================================================================
+// 6. Cards: render term cards
+// ================================================================
 
 async function loadTerms() {
-  const grid = document.getElementById('grid');
+  var grid = document.getElementById('grid');
   try {
-    const resp = await fetch('/liminal-vocab/api/terms?lang=' + currentLang);
+    var resp = await fetch('/liminal-vocab/api/terms?lang=' + currentLang);
     if (!resp.ok) throw new Error('API error');
-    const terms = await resp.json();
+    var terms = await resp.json();
 
     grid.innerHTML = '';
-    for (const term of terms) {
-      const community = getCommunityLabel(term.edges || []);
-      const meta = buildCardMeta(term.edges || []);
-      const label = term.label || term.id;
-      const originalLabel = term.original_label || label;
-      const showOriginal = !term.has_equivalent && label === originalLabel;
+    for (var i = 0; i < terms.length; i++) {
+      var term = terms[i];
+      var community = getCommunityLabel(term.edges || []);
+      var meta = buildCardMeta(term.edges || []);
+      var label = term.label || term.id;
+      var maturity = term.maturity || {};
+      var maturityStage = maturity.stage || '';
 
-      const card = document.createElement('div');
+      var card = document.createElement('div');
       card.className = 'card';
 
-      let html =
+      var html =
         '<div class="card-type"><span>' + escapeHtml(community) + '</span></div>' +
         '<div class="card-term">' + escapeHtml(label) + '</div>' +
         '<div class="card-makes-visible">' + escapeHtml(term.makes_visible || '') + '</div>';
 
+      if (maturityStage) {
+        var matKey = MATURITY_KEYS[maturityStage] || maturityStage;
+        html += '<div class="card-maturity">' + escapeHtml(t(matKey)) + '</div>';
+      }
+
       if (!term.has_equivalent) {
-        const otherLang = currentLang === 'en' ? 'de' : 'en';
+        var otherLang = currentLang === 'en' ? 'de' : 'en';
         html += '<div class="card-no-equiv">' + t('no_equivalent').replace('{lang}', LANG_NAMES[otherLang] || otherLang) + '</div>';
       }
 
@@ -619,106 +1235,389 @@ async function loadTerms() {
   }
 }
 
+// ================================================================
+// 7. Graph: D3 force simulation
+// ================================================================
 
-// ── Reveal on scroll ──────────────────────────────────
+var graphSimulation = null;
 
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
+async function loadGraph() {
+  var container = document.getElementById('graphContainer');
+  var tooltip = document.getElementById('graphTooltip');
+  var tooltipType = document.getElementById('graphTooltipType');
+  var tooltipLabel = document.getElementById('graphTooltipLabel');
+
+  var oldSvg = container.querySelector('svg');
+  if (oldSvg) oldSvg.remove();
+
+  if (graphSimulation) {
+    graphSimulation.stop();
+    graphSimulation = null;
+  }
+
+  var width = container.clientWidth;
+  var height = container.clientHeight;
+
+  var style = getComputedStyle(document.documentElement);
+  var colorAccent = style.getPropertyValue('--accent').trim();
+  var colorInkFaded = style.getPropertyValue('--ink-faded').trim();
+  var colorRule = style.getPropertyValue('--rule').trim();
+  var colorInk = style.getPropertyValue('--ink').trim();
+  var colorPaper = style.getPropertyValue('--paper').trim();
+
+  try {
+    var resp = await fetch('/liminal-vocab/api/graph?lang=' + currentLang);
+    if (!resp.ok) throw new Error('Graph API error');
+    var data = await resp.json();
+
+    var nodes = data.nodes || [];
+    var edges = data.edges || [];
+
+    var nodeMap = {};
+    nodes.forEach(function(n) { nodeMap[n.id] = n; });
+
+    var links = edges.map(function(e) {
+      return {
+        source: e.source,
+        target: e.target,
+        type: e.type
+      };
+    }).filter(function(l) {
+      return nodeMap[l.source] && nodeMap[l.target];
+    });
+
+    var svg = d3.select(container)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    var g = svg.append('g');
+
+    var zoom = d3.zoom()
+      .scaleExtent([0.3, 4])
+      .on('zoom', function(event) {
+        g.attr('transform', event.transform);
+      });
+
+    svg.call(zoom);
+
+    var link = g.selectAll('.graph-link')
+      .data(links)
+      .enter()
+      .append('line')
+      .attr('class', 'graph-link')
+      .attr('stroke', colorRule)
+      .attr('stroke-opacity', 0.5)
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', function(d) {
+        return d.type === 'related_to' ? '4,3' : 'none';
+      });
+
+    var node = g.selectAll('.graph-node')
+      .data(nodes)
+      .enter()
+      .append('g')
+      .attr('class', 'graph-node');
+
+    node.each(function(d) {
+      var el = d3.select(this);
+      var ntype = d.type || 'term';
+      if (ntype === 'wanted') {
+        el.append('circle')
+          .attr('r', 8)
+          .attr('fill', 'none')
+          .attr('stroke', colorAccent)
+          .attr('stroke-width', 1.5)
+          .attr('stroke-dasharray', '3,2')
+          .style('animation', 'pulse-border 2s ease-in-out infinite');
+      } else if (ntype === 'community') {
+        el.append('circle')
+          .attr('r', 6)
+          .attr('fill', colorInkFaded)
+          .attr('opacity', 0.5);
+      } else if (ntype === 'pattern') {
+        el.append('circle')
+          .attr('r', 4)
+          .attr('fill', colorInkFaded)
+          .attr('opacity', 0.3);
+      } else {
+        var matScore = (d.maturity && d.maturity.score) || 0;
+        el.append('circle')
+          .attr('r', 10 + matScore * 1.5)
+          .attr('fill', colorAccent);
+      }
+    });
+
+    var labels = g.selectAll('.graph-label')
+      .data(nodes.filter(function(d) {
+        var ntype = d.type || 'term';
+        return ntype === 'term' || ntype === 'wanted';
+      }))
+      .enter()
+      .append('text')
+      .attr('class', 'graph-label')
+      .attr('font-family', '"JetBrains Mono", monospace')
+      .attr('font-size', '9px')
+      .attr('fill', colorInk)
+      .attr('dx', 14)
+      .attr('dy', 3)
+      .text(function(d) { return d.label || d.id; });
+
+    node.on('mouseover', function(event, d) {
+      var ntype = d.type || 'term';
+      tooltipType.textContent = ntype.toUpperCase();
+      tooltipLabel.textContent = d.label || d.id;
+      tooltip.classList.add('visible');
+    }).on('mousemove', function(event) {
+      var rect = container.getBoundingClientRect();
+      tooltip.style.left = (event.clientX - rect.left + 12) + 'px';
+      tooltip.style.top = (event.clientY - rect.top - 10) + 'px';
+    }).on('mouseout', function() {
+      tooltip.classList.remove('visible');
+    });
+
+    var drag = d3.drag()
+      .on('start', function(event, d) {
+        if (!event.active) graphSimulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+      .on('drag', function(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      })
+      .on('end', function(event, d) {
+        if (!event.active) graphSimulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      });
+
+    node.call(drag);
+
+    graphSimulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(80))
+      .force('charge', d3.forceManyBody().strength(-120))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(20))
+      .on('tick', function() {
+        link
+          .attr('x1', function(d) { return d.source.x; })
+          .attr('y1', function(d) { return d.source.y; })
+          .attr('x2', function(d) { return d.target.x; })
+          .attr('y2', function(d) { return d.target.y; });
+
+        node.attr('transform', function(d) {
+          return 'translate(' + d.x + ',' + d.y + ')';
+        });
+
+        labels
+          .attr('x', function(d) { return d.x; })
+          .attr('y', function(d) { return d.y; });
+      });
+
+  } catch (err) {
+    container.innerHTML = '<div style="padding:24px;color:var(--ink-faded);font-family:JetBrains Mono,monospace;font-size:12px">' + escapeHtml(err.message) + '</div><div class="graph-tooltip" id="graphTooltip"><div class="graph-tooltip-type" id="graphTooltipType"></div><div id="graphTooltipLabel"></div></div>';
+  }
+}
+
+// ================================================================
+// 8. View toggle (Cards / Graph)
+// ================================================================
+
+function switchView(view) {
+  var cardsView = document.getElementById('cardsView');
+  var graphView = document.getElementById('graphView');
+  var cardsBtn = document.getElementById('viewCardsBtn');
+  var graphBtn = document.getElementById('viewGraphBtn');
+
+  if (view === 'graph') {
+    cardsView.style.display = 'none';
+    graphView.style.display = 'block';
+    cardsBtn.classList.remove('active');
+    graphBtn.classList.add('active');
+    loadGraph();
+  } else {
+    cardsView.style.display = 'block';
+    graphView.style.display = 'none';
+    cardsBtn.classList.add('active');
+    graphBtn.classList.remove('active');
+  }
+}
+
+// ================================================================
+// 9. Wanted terms
+// ================================================================
+
+async function loadWanted() {
+  var grid = document.getElementById('wantedGrid');
+  try {
+    var resp = await fetch('/liminal-vocab/api/wanted?lang=' + currentLang);
+    if (!resp.ok) throw new Error('Wanted API error');
+    var items = await resp.json();
+
+    grid.innerHTML = '';
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var card = document.createElement('div');
+      card.className = 'wanted-card';
+
+      var html = '';
+      if (item.label) {
+        html += '<div class="wanted-term">' + escapeHtml(item.label) + '</div>';
+      }
+      html += '<div class="wanted-desc">' + escapeHtml(item.description || '') + '</div>';
+      if (item.tags && item.tags.length) {
+        html += '<div class="wanted-tags">' + escapeHtml(item.tags.join(', ')) + '</div>';
+      }
+      card.innerHTML = html;
+      grid.appendChild(card);
     }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(r => io.observe(r));
+  } catch (err) {
+    grid.innerHTML = '';
+  }
+}
 
-window.addEventListener('load', () => {
-  document.querySelectorAll('header.hero .reveal').forEach((el, i) => {
-    setTimeout(() => el.classList.add('in'), 120 + i * 180);
-  });
-});
+// ================================================================
+// 10. Form submissions
+// ================================================================
 
+// Term proposal form
+var proposalForm = document.getElementById('proposalForm');
+var proposalResult = document.getElementById('formResult');
 
-// ── Form submission ──────────────────────────────────
-
-const form = document.getElementById('proposalForm');
-const result = document.getElementById('formResult');
-
-form.addEventListener('submit', async (e) => {
+proposalForm.addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn = form.querySelector('.submit-btn');
+  var btn = proposalForm.querySelector('.submit-btn');
   btn.disabled = true;
   btn.textContent = '...';
-  result.className = 'form-result';
-  result.style.display = 'none';
+  proposalResult.className = 'form-result';
+  proposalResult.style.display = 'none';
 
-  const data = {
-    term: form.term.value.trim(),
-    community: form.community.value.trim(),
-    makes_visible: form.makes_visible.value.trim(),
-    pattern: form.pattern.value.trim(),
-    citation: form.citation.value.trim(),
-    context: form.context.value.trim(),
-    submitter_name: form.submitter_name.value.trim(),
+  var data = {
+    term: proposalForm.term.value.trim(),
+    community: proposalForm.community.value.trim(),
+    makes_visible: proposalForm.makes_visible.value.trim(),
+    pattern: proposalForm.pattern.value.trim(),
+    citation: proposalForm.citation.value.trim(),
+    context: proposalForm.context.value.trim(),
+    submitter_name: proposalForm.submitter_name.value.trim(),
   };
 
   try {
-    const resp = await fetch('/liminal-vocab/api/submit', {
+    var resp = await fetch('/liminal-vocab/api/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
     if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err.detail || 'Submission failed');
+      var errData = await resp.json().catch(function() { return {}; });
+      throw new Error(errData.detail || 'Submission failed');
     }
-    const res = await resp.json();
-    result.className = 'form-result success';
-    result.innerHTML = t('submit_success').replace('{term}', escapeHtml(data.term)).replace('{url}', res.issue_url).replace('{num}', res.issue_number);
-    result.style.display = 'block';
-    form.reset();
+    var res = await resp.json();
+    proposalResult.className = 'form-result success';
+    proposalResult.innerHTML = t('submit_success').replace('{term}', escapeHtml(data.term)).replace('{url}', res.issue_url).replace('{num}', res.issue_number);
+    proposalResult.style.display = 'block';
+    proposalForm.reset();
   } catch (err) {
-    result.className = 'form-result error';
-    result.textContent = t('submit_error').replace('{err}', err.message);
-    result.style.display = 'block';
+    proposalResult.className = 'form-result error';
+    proposalResult.textContent = t('submit_error').replace('{err}', err.message);
+    proposalResult.style.display = 'block';
   } finally {
     btn.disabled = false;
     btn.textContent = t('form_submit_btn');
   }
 });
 
+// Wanted / gap forms (both the explore-page one and the contribute-page one)
+function setupWantedForm(formId, resultId) {
+  var form = document.getElementById(formId);
+  var result = document.getElementById(resultId);
 
-// ── Theme toggle ──────────────────────────────────
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.textContent = '...';
+    result.className = 'form-result';
+    result.style.display = 'none';
 
-const themeBtn = document.getElementById('themeToggle');
-const THEME_LABELS = { light: '◐ Dark', dark: '◑ Light' };
+    var tagsRaw = form.tags ? form.tags.value.trim() : '';
+    var tags = tagsRaw ? tagsRaw.split(',').map(function(t) { return t.trim(); }).filter(Boolean) : [];
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('lv-theme', theme);
-  themeBtn.textContent = THEME_LABELS[theme];
+    var data = {
+      description: form.description.value.trim(),
+      tags: tags,
+      submitter_name: form.submitter_name ? form.submitter_name.value.trim() : '',
+    };
+
+    try {
+      var resp = await fetch('/liminal-vocab/api/wanted/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!resp.ok) {
+        var errData = await resp.json().catch(function() { return {}; });
+        throw new Error(errData.detail || 'Submission failed');
+      }
+      await resp.json();
+      result.className = 'form-result success';
+      result.textContent = t('wanted_success');
+      result.style.display = 'block';
+      form.reset();
+      loadWanted();
+    } catch (err) {
+      result.className = 'form-result error';
+      result.textContent = t('wanted_error').replace('{err}', err.message);
+      result.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = t('gaps_submit_btn');
+    }
+  });
 }
 
-themeBtn.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  applyTheme(current === 'dark' ? 'light' : 'dark');
-});
+setupWantedForm('wantedFormExplore', 'wantedFormExploreResult');
+setupWantedForm('wantedFormContribute', 'wantedFormContributeResult');
 
-// Init theme: respect saved preference, then system preference
-const savedTheme = localStorage.getItem('lv-theme');
-if (savedTheme) {
-  applyTheme(savedTheme);
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  applyTheme('dark');
-} else {
-  applyTheme('light');
+// ================================================================
+// 11. Reveal animations (IntersectionObserver)
+// ================================================================
+
+var observerInstance = null;
+
+function initReveals() {
+  if (observerInstance) {
+    observerInstance.disconnect();
+  }
+
+  observerInstance = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observerInstance.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(r) {
+    observerInstance.observe(r);
+  });
+
+  // Hero reveals immediately
+  var heroReveals = document.querySelectorAll('#page-explore header.hero .reveal');
+  heroReveals.forEach(function(el, i) {
+    setTimeout(function() { el.classList.add('in'); }, 120 + i * 180);
+  });
 }
 
+// ================================================================
+// 12. Init
+// ================================================================
 
-// ── Init ──────────────────────────────────
-
+initFromHash();
 applyLang();
+initReveals();
 </script>
 
 </body>

@@ -1,7 +1,9 @@
 {
   "id": "commoning",
   "type": "Term",
-  "labels": { "en": "commoning" },
+  "labels": {
+    "en": "commoning"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "Resources stewarded collectively as an active practice, not a legal status.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2000s",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

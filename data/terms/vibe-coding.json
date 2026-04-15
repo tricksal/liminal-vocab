@@ -1,7 +1,9 @@
 {
   "id": "vibe-coding",
   "type": "Term",
-  "labels": { "en": "vibe-coding" },
+  "labels": {
+    "en": "vibe-coding"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "Writing software by describing intent to an AI model rather than composing syntax directly.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2025",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

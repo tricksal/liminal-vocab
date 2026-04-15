@@ -16,7 +16,10 @@
   },
   "approx_emergence": "1902 (Kropotkin), 2020s (resurgence)",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

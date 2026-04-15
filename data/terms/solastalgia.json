@@ -1,7 +1,9 @@
 {
   "id": "solastalgia",
   "type": "Term",
-  "labels": { "en": "solastalgia" },
+  "labels": {
+    "en": "solastalgia"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "The distress caused by environmental change happening in your home environment while you still live there.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2005",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-11",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }

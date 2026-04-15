@@ -1,7 +1,9 @@
 {
   "id": "ai-dr",
   "type": "Term",
-  "labels": { "en": "ai;dr" },
+  "labels": {
+    "en": "ai;dr"
+  },
   "primary_language": "en",
   "definitions": {
     "en": "Shorthand for text that is clearly AI-generated and can be safely skipped.",
@@ -13,7 +15,10 @@
   },
   "approx_emergence": "2024-2025",
   "status": "accepted",
-  "editors": ["@tricksal"],
+  "editors": [
+    "@tricksal"
+  ],
   "created": "2026-04-10",
-  "modified": "2026-04-12"
+  "modified": "2026-04-12",
+  "signals": []
 }
