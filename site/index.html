@@ -1340,7 +1340,7 @@ function updateGraphVisibility() {
   d3.selectAll('.graph-link').style('opacity', function(d) {
     var sType = (d.source.type || 'Term');
     var tType = (d.target.type || 'Term');
-    return (graphVisibleLayers[sType] !== false && graphVisibleLayers[tType] !== false) ? 0.5 : 0.05;
+    return (graphVisibleLayers[sType] !== false && graphVisibleLayers[tType] !== false) ? 0.6 : 0.04;
   });
 }
 
@@ -1352,8 +1352,10 @@ function toggleGraphFullscreen() {
   document.body.style.overflow = isFs ? 'hidden' : '';
   btn.querySelector('[data-i18n]').dataset.i18n = isFs ? 'graph_exit_fullscreen' : 'graph_fullscreen';
   btn.querySelector('[data-i18n]').textContent = t(isFs ? 'graph_exit_fullscreen' : 'graph_fullscreen');
-  // Reload graph to fit new size
-  setTimeout(loadGraph, 50);
+  // Wait for layout reflow, then reload graph to fit new container size
+  requestAnimationFrame(function() {
+    requestAnimationFrame(loadGraph);
+  });
 }
 
 // Close fullscreen with Escape
@@ -1426,10 +1428,10 @@ async function loadGraph() {
     var link = g.selectAll('.graph-link')
       .data(links).enter().append('line')
       .attr('class', 'graph-link')
-      .attr('stroke', colorRule)
-      .attr('stroke-opacity', 0.5)
-      .attr('stroke-width', 1)
-      .attr('stroke-dasharray', function(d) { return d.type === 'related_to' ? '4,3' : 'none'; });
+      .attr('stroke', colorInkSoft)
+      .attr('stroke-opacity', 0.6)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-dasharray', function(d) { return d.type === 'related_to' ? '5,4' : 'none'; });
 
     // Node groups
     var node = g.selectAll('.graph-node')
@@ -1502,11 +1504,11 @@ async function loadGraph() {
       link.attr('stroke-opacity', function(l) {
         var sId = typeof l.source === 'object' ? l.source.id : l.source;
         var tId = typeof l.target === 'object' ? l.target.id : l.target;
-        return (sId === d.id || tId === d.id) ? 1 : 0.08;
+        return (sId === d.id || tId === d.id) ? 1 : 0.06;
       }).attr('stroke-width', function(l) {
         var sId = typeof l.source === 'object' ? l.source.id : l.source;
         var tId = typeof l.target === 'object' ? l.target.id : l.target;
-        return (sId === d.id || tId === d.id) ? 2 : 1;
+        return (sId === d.id || tId === d.id) ? 2.5 : 1;
       });
       node.style('opacity', function(n) { return connectedIds.has(n.id) ? 1 : 0.15; });
       labels.style('opacity', function(n) { return connectedIds.has(n.id) ? 1 : 0.1; });
@@ -1516,7 +1518,7 @@ async function loadGraph() {
       tooltip.style.top = (event.clientY - rect.top - 10) + 'px';
     }).on('mouseout', function() {
       tooltip.classList.remove('visible');
-      link.attr('stroke-opacity', 0.5).attr('stroke-width', 1);
+      link.attr('stroke-opacity', 0.6).attr('stroke-width', 1.5);
       node.style('opacity', 1);
       labels.style('opacity', 1);
       updateGraphVisibility();
