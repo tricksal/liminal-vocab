@@ -353,6 +353,34 @@
   }
 
   /* ---- Graph View ---- */
+  .graph-controls {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 12px;
+  }
+  .graph-legend { display: flex; flex-wrap: wrap; gap: 6px; }
+  .graph-toggle {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 10px; background: transparent;
+    border: 1px solid var(--rule); color: var(--ink-faded);
+    cursor: pointer; transition: all 0.2s ease; border-radius: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .graph-toggle:hover { border-color: var(--ink); color: var(--ink); }
+  .graph-toggle.active { border-color: var(--ink-soft); color: var(--ink); }
+  .graph-toggle:not(.active) { opacity: 0.4; }
+  .legend-dot {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  }
+  .legend-dot-dashed {
+    background: none; border: 1.5px dashed var(--accent);
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .legend-dot-text {
+    background: none; font-size: 9px; font-weight: 600;
+    color: var(--ink-soft); width: auto; height: auto;
+  }
+
   .graph-container {
     width: 100%;
     height: 600px;
@@ -363,6 +391,20 @@
     border-radius: 2px;
   }
   .graph-container svg { width: 100%; height: 100%; display: block; }
+
+  /* Fullscreen graph */
+  #graphView.fullscreen {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1000; background: var(--paper-deep);
+    padding: 0; margin: 0; display: flex; flex-direction: column;
+  }
+  #graphView.fullscreen .graph-controls {
+    padding: 12px 16px; background: var(--paper); border-bottom: 1px solid var(--rule);
+    margin-bottom: 0; flex-shrink: 0;
+  }
+  #graphView.fullscreen .graph-container {
+    height: auto; flex: 1; border: none; border-radius: 0;
+  }
 
   .graph-tooltip {
     position: absolute;
@@ -684,6 +726,18 @@
       </div>
 
       <div id="graphView" style="display:none">
+        <div class="graph-controls">
+          <div class="graph-legend">
+            <button class="graph-toggle active" data-layer="Term"><span class="legend-dot" style="background:var(--accent)"></span><span data-i18n="graph_terms">Terms</span></button>
+            <button class="graph-toggle active" data-layer="Community"><span class="legend-dot" style="background:var(--green)"></span><span data-i18n="graph_communities">Communities</span></button>
+            <button class="graph-toggle active" data-layer="Pattern"><span class="legend-dot" style="background:var(--ink-faded)"></span><span data-i18n="graph_patterns">Patterns</span></button>
+            <button class="graph-toggle active" data-layer="Wanted"><span class="legend-dot legend-dot-dashed"></span><span data-i18n="graph_wanted">Gaps</span></button>
+            <button class="graph-toggle active" data-layer="labels"><span class="legend-dot legend-dot-text">A</span><span data-i18n="graph_labels">Labels</span></button>
+          </div>
+          <button class="graph-toggle" id="graphFullscreenBtn" style="margin-left:auto" onclick="toggleGraphFullscreen()">
+            <span data-i18n="graph_fullscreen">Fullscreen</span>
+          </button>
+        </div>
         <div class="graph-container" id="graphContainer">
           <div class="graph-tooltip" id="graphTooltip">
             <div class="graph-tooltip-type" id="graphTooltipType"></div>
@@ -880,6 +934,13 @@ const UI = {
     hero_lede: 'An open, curated, multilingual cartography of the new vocabulary emerging at the edges of culture, where communities of practice are already naming things the rest of us can\'t yet see.',
     view_cards: 'Cards',
     view_graph: 'Graph',
+    graph_terms: 'Terms',
+    graph_communities: 'Communities',
+    graph_patterns: 'Patterns',
+    graph_wanted: 'Gaps',
+    graph_labels: 'Labels',
+    graph_fullscreen: 'Fullscreen',
+    graph_exit_fullscreen: 'Exit',
     gaps_label: 'The gaps',
     gaps_title: 'Sometimes the word doesn\'t exist yet.',
     gaps_form_title: 'Describe a gap',
@@ -967,6 +1028,13 @@ const UI = {
     hero_lede: 'Eine offene, kuratierte, mehrsprachige Kartographie des neuen Vokabulars, das an den R\u00e4ndern der Kultur entsteht, wo Communities of Practice bereits Dinge benennen, die der Rest von uns noch nicht sehen kann.',
     view_cards: 'Karten',
     view_graph: 'Graph',
+    graph_terms: 'Begriffe',
+    graph_communities: 'Communities',
+    graph_patterns: 'Muster',
+    graph_wanted: 'L\u00fccken',
+    graph_labels: 'Labels',
+    graph_fullscreen: 'Vollbild',
+    graph_exit_fullscreen: 'Schlie\u00dfen',
     gaps_label: 'Die L\u00fccken',
     gaps_title: 'Manchmal existiert das Wort noch nicht.',
     gaps_form_title: 'Eine L\u00fccke beschreiben',
@@ -1240,6 +1308,68 @@ async function loadTerms() {
 // ================================================================
 
 var graphSimulation = null;
+var graphVisibleLayers = { Term: true, Community: true, Pattern: true, Wanted: true, labels: true };
+
+// Layer toggle controls
+document.querySelectorAll('.graph-toggle[data-layer]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var layer = btn.dataset.layer;
+    graphVisibleLayers[layer] = !graphVisibleLayers[layer];
+    btn.classList.toggle('active', graphVisibleLayers[layer]);
+    updateGraphVisibility();
+  });
+});
+
+function updateGraphVisibility() {
+  var svg = document.querySelector('#graphContainer svg');
+  if (!svg) return;
+
+  d3.selectAll('.graph-node').each(function(d) {
+    var ntype = d.type || 'Term';
+    var visible = graphVisibleLayers[ntype] !== false;
+    d3.select(this).style('opacity', visible ? 1 : 0.07);
+  });
+
+  d3.selectAll('.graph-label').each(function(d) {
+    var ntype = d.type || 'Term';
+    var layerVisible = graphVisibleLayers[ntype] !== false;
+    var labelsOn = graphVisibleLayers.labels !== false;
+    d3.select(this).style('opacity', (layerVisible && labelsOn) ? 1 : 0);
+  });
+
+  d3.selectAll('.graph-link').style('opacity', function(d) {
+    var sType = (d.source.type || 'Term');
+    var tType = (d.target.type || 'Term');
+    return (graphVisibleLayers[sType] !== false && graphVisibleLayers[tType] !== false) ? 0.5 : 0.05;
+  });
+}
+
+// Fullscreen
+function toggleGraphFullscreen() {
+  var gv = document.getElementById('graphView');
+  var btn = document.getElementById('graphFullscreenBtn');
+  var isFs = gv.classList.toggle('fullscreen');
+  document.body.style.overflow = isFs ? 'hidden' : '';
+  btn.querySelector('[data-i18n]').dataset.i18n = isFs ? 'graph_exit_fullscreen' : 'graph_fullscreen';
+  btn.querySelector('[data-i18n]').textContent = t(isFs ? 'graph_exit_fullscreen' : 'graph_fullscreen');
+  // Reload graph to fit new size
+  setTimeout(loadGraph, 50);
+}
+
+// Close fullscreen with Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('graphView').classList.contains('fullscreen')) {
+    toggleGraphFullscreen();
+  }
+});
+
+var TYPE_COLORS = {
+  Term: function() { return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(); },
+  Community: function() { return getComputedStyle(document.documentElement).getPropertyValue('--green').trim(); },
+  Pattern: function() { return getComputedStyle(document.documentElement).getPropertyValue('--ink-faded').trim(); },
+  Wanted: function() { return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(); },
+  Source: function() { return getComputedStyle(document.documentElement).getPropertyValue('--ink-faded').trim(); },
+};
 
 async function loadGraph() {
   var container = document.getElementById('graphContainer');
@@ -1259,11 +1389,9 @@ async function loadGraph() {
   var height = container.clientHeight;
 
   var style = getComputedStyle(document.documentElement);
-  var colorAccent = style.getPropertyValue('--accent').trim();
-  var colorInkFaded = style.getPropertyValue('--ink-faded').trim();
   var colorRule = style.getPropertyValue('--rule').trim();
   var colorInk = style.getPropertyValue('--ink').trim();
-  var colorPaper = style.getPropertyValue('--paper').trim();
+  var colorInkSoft = style.getPropertyValue('--ink-soft').trim();
 
   try {
     var resp = await fetch('/liminal-vocab/api/graph?lang=' + currentLang);
@@ -1277,11 +1405,7 @@ async function loadGraph() {
     nodes.forEach(function(n) { nodeMap[n.id] = n; });
 
     var links = edges.map(function(e) {
-      return {
-        source: e.source,
-        target: e.target,
-        type: e.type
-      };
+      return { source: e.source, target: e.target, type: e.type };
     }).filter(function(l) {
       return nodeMap[l.source] && nodeMap[l.target];
     });
@@ -1293,130 +1417,146 @@ async function loadGraph() {
 
     var g = svg.append('g');
 
-    var zoom = d3.zoom()
-      .scaleExtent([0.3, 4])
-      .on('zoom', function(event) {
-        g.attr('transform', event.transform);
-      });
+    svg.call(d3.zoom()
+      .scaleExtent([0.2, 5])
+      .on('zoom', function(event) { g.attr('transform', event.transform); })
+    );
 
-    svg.call(zoom);
-
+    // Edges
     var link = g.selectAll('.graph-link')
-      .data(links)
-      .enter()
-      .append('line')
+      .data(links).enter().append('line')
       .attr('class', 'graph-link')
       .attr('stroke', colorRule)
       .attr('stroke-opacity', 0.5)
       .attr('stroke-width', 1)
-      .attr('stroke-dasharray', function(d) {
-        return d.type === 'related_to' ? '4,3' : 'none';
-      });
+      .attr('stroke-dasharray', function(d) { return d.type === 'related_to' ? '4,3' : 'none'; });
 
+    // Node groups
     var node = g.selectAll('.graph-node')
-      .data(nodes)
-      .enter()
-      .append('g')
+      .data(nodes).enter().append('g')
       .attr('class', 'graph-node');
 
+    // Draw shapes per type
     node.each(function(d) {
       var el = d3.select(this);
-      var ntype = d.type || 'term';
-      if (ntype === 'wanted') {
-        el.append('circle')
-          .attr('r', 8)
-          .attr('fill', 'none')
-          .attr('stroke', colorAccent)
-          .attr('stroke-width', 1.5)
-          .attr('stroke-dasharray', '3,2')
-          .style('animation', 'pulse-border 2s ease-in-out infinite');
-      } else if (ntype === 'community') {
-        el.append('circle')
-          .attr('r', 6)
-          .attr('fill', colorInkFaded)
-          .attr('opacity', 0.5);
-      } else if (ntype === 'pattern') {
-        el.append('circle')
-          .attr('r', 4)
-          .attr('fill', colorInkFaded)
-          .attr('opacity', 0.3);
+      var ntype = d.type || 'Term';
+      var color = (TYPE_COLORS[ntype] || TYPE_COLORS.Term)();
+
+      if (ntype === 'Wanted') {
+        el.append('circle').attr('r', 8)
+          .attr('fill', 'none').attr('stroke', color)
+          .attr('stroke-width', 1.5).attr('stroke-dasharray', '3,2');
+      } else if (ntype === 'Community') {
+        el.append('circle').attr('r', 7).attr('fill', color).attr('opacity', 0.7);
+      } else if (ntype === 'Pattern') {
+        el.append('rect').attr('x', -5).attr('y', -5).attr('width', 10).attr('height', 10)
+          .attr('fill', color).attr('opacity', 0.5).attr('rx', 2);
+      } else if (ntype === 'Source') {
+        el.append('circle').attr('r', 4).attr('fill', color).attr('opacity', 0.3);
       } else {
         var matScore = (d.maturity && d.maturity.score) || 0;
-        el.append('circle')
-          .attr('r', 10 + matScore * 1.5)
-          .attr('fill', colorAccent);
+        el.append('circle').attr('r', 10 + matScore * 1.5).attr('fill', color).attr('opacity', 0.85);
       }
     });
 
+    // Labels for ALL node types (always visible)
     var labels = g.selectAll('.graph-label')
-      .data(nodes.filter(function(d) {
-        var ntype = d.type || 'term';
-        return ntype === 'term' || ntype === 'wanted';
-      }))
-      .enter()
-      .append('text')
+      .data(nodes).enter().append('text')
       .attr('class', 'graph-label')
       .attr('font-family', '"JetBrains Mono", monospace')
-      .attr('font-size', '9px')
-      .attr('fill', colorInk)
-      .attr('dx', 14)
+      .attr('fill', colorInkSoft)
       .attr('dy', 3)
-      .text(function(d) { return d.label || d.id; });
+      .each(function(d) {
+        var ntype = d.type || 'Term';
+        var el = d3.select(this);
+        if (ntype === 'Term') {
+          el.attr('font-size', '11px').attr('font-weight', '500').attr('fill', colorInk);
+          var r = 10 + ((d.maturity && d.maturity.score) || 0) * 1.5;
+          el.attr('dx', r + 4);
+        } else if (ntype === 'Community') {
+          el.attr('font-size', '9px').attr('dx', 11);
+        } else if (ntype === 'Pattern') {
+          el.attr('font-size', '8px').attr('dx', 10).attr('font-style', 'italic');
+        } else if (ntype === 'Wanted') {
+          el.attr('font-size', '9px').attr('dx', 12).attr('font-style', 'italic');
+        } else {
+          el.attr('font-size', '8px').attr('dx', 8).style('opacity', 0.5);
+        }
+        el.text(d.label || d.id);
+      });
 
+    // Hover: highlight connections
     node.on('mouseover', function(event, d) {
-      var ntype = d.type || 'term';
-      tooltipType.textContent = ntype.toUpperCase();
+      tooltipType.textContent = (d.type || 'Term').toUpperCase();
       tooltipLabel.textContent = d.label || d.id;
       tooltip.classList.add('visible');
+
+      // Highlight connected edges
+      var connectedIds = new Set([d.id]);
+      link.each(function(l) {
+        var sId = typeof l.source === 'object' ? l.source.id : l.source;
+        var tId = typeof l.target === 'object' ? l.target.id : l.target;
+        if (sId === d.id) connectedIds.add(tId);
+        if (tId === d.id) connectedIds.add(sId);
+      });
+      link.attr('stroke-opacity', function(l) {
+        var sId = typeof l.source === 'object' ? l.source.id : l.source;
+        var tId = typeof l.target === 'object' ? l.target.id : l.target;
+        return (sId === d.id || tId === d.id) ? 1 : 0.08;
+      }).attr('stroke-width', function(l) {
+        var sId = typeof l.source === 'object' ? l.source.id : l.source;
+        var tId = typeof l.target === 'object' ? l.target.id : l.target;
+        return (sId === d.id || tId === d.id) ? 2 : 1;
+      });
+      node.style('opacity', function(n) { return connectedIds.has(n.id) ? 1 : 0.15; });
+      labels.style('opacity', function(n) { return connectedIds.has(n.id) ? 1 : 0.1; });
     }).on('mousemove', function(event) {
       var rect = container.getBoundingClientRect();
       tooltip.style.left = (event.clientX - rect.left + 12) + 'px';
       tooltip.style.top = (event.clientY - rect.top - 10) + 'px';
     }).on('mouseout', function() {
       tooltip.classList.remove('visible');
+      link.attr('stroke-opacity', 0.5).attr('stroke-width', 1);
+      node.style('opacity', 1);
+      labels.style('opacity', 1);
+      updateGraphVisibility();
     });
 
-    var drag = d3.drag()
+    // Drag
+    node.call(d3.drag()
       .on('start', function(event, d) {
         if (!event.active) graphSimulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
+        d.fx = d.x; d.fy = d.y;
       })
-      .on('drag', function(event, d) {
-        d.fx = event.x;
-        d.fy = event.y;
-      })
+      .on('drag', function(event, d) { d.fx = event.x; d.fy = event.y; })
       .on('end', function(event, d) {
         if (!event.active) graphSimulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-      });
+        d.fx = null; d.fy = null;
+      })
+    );
 
-    node.call(drag);
-
+    // Simulation
     graphSimulation = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(80))
-      .force('charge', d3.forceManyBody().strength(-120))
+      .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(100))
+      .force('charge', d3.forceManyBody().strength(-180))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(20))
+      .force('collision', d3.forceCollide().radius(function(d) {
+        if (d.type === 'Term') return 14 + ((d.maturity && d.maturity.score) || 0) * 1.5;
+        return 12;
+      }))
       .on('tick', function() {
-        link
-          .attr('x1', function(d) { return d.source.x; })
-          .attr('y1', function(d) { return d.source.y; })
-          .attr('x2', function(d) { return d.target.x; })
-          .attr('y2', function(d) { return d.target.y; });
-
-        node.attr('transform', function(d) {
-          return 'translate(' + d.x + ',' + d.y + ')';
-        });
-
-        labels
-          .attr('x', function(d) { return d.x; })
-          .attr('y', function(d) { return d.y; });
+        link.attr('x1', function(d) { return d.source.x; })
+            .attr('y1', function(d) { return d.source.y; })
+            .attr('x2', function(d) { return d.target.x; })
+            .attr('y2', function(d) { return d.target.y; });
+        node.attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+        labels.attr('x', function(d) { return d.x; }).attr('y', function(d) { return d.y; });
       });
+
+    updateGraphVisibility();
 
   } catch (err) {
-    container.innerHTML = '<div style="padding:24px;color:var(--ink-faded);font-family:JetBrains Mono,monospace;font-size:12px">' + escapeHtml(err.message) + '</div><div class="graph-tooltip" id="graphTooltip"><div class="graph-tooltip-type" id="graphTooltipType"></div><div id="graphTooltipLabel"></div></div>';
+    container.innerHTML = '<div style="padding:24px;color:var(--ink-faded);font-family:JetBrains Mono,monospace;font-size:12px">' + escapeHtml(err.message) + '</div>';
   }
 }
 
